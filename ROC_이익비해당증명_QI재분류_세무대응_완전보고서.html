@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROC — 이익·잉여금 비해당 완전 증명 및 개인 세무대응 실전 보고서</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,600;0,8..60,700;1,8..60,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0f12;--bg2:#131720;--bg3:#1a2030;--bg4:#1e2840;
+  --border:#1e3050;--border2:#2a4070;
+  --text:#c8d8f0;--text2:#8aa8d0;--text3:#5070a0;
+  --accent:#4fc3f7;--accent2:#81d4fa;--accent3:#0288d1;
+  --gold:#ffd54f;--gold2:#ffb300;
+  --green:#69f0ae;--green2:#00c853;--green3:#1b5e20;
+  --red:#ff5252;--red2:#b71c1c;
+  --purple:#ce93d8;--purple2:#7b1fa2;
+  --orange:#ffb74d;--orange2:#e65100;
+  --mono:'IBM Plex Mono',monospace;
+  --serif:'Source Serif 4',serif;
+  --sans:'Noto Sans KR',sans-serif;
+  --formula-bg:#0a1520;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.8;font-size:15px;}
+
+/* SCANLINES EFFECT */
+body::before{
+  content:'';position:fixed;inset:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.03) 2px,rgba(0,0,0,.03) 4px);
+  pointer-events:none;z-index:0;
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#060b14,#0a1830,#060b14);
+  border-bottom:1px solid var(--accent3);
+  padding:0;position:sticky;top:0;z-index:200;
+}
+.header-inner{max-width:1100px;margin:0 auto;padding:14px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;}
+.logo{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.12em;font-weight:500;}
+.logo span{color:var(--text3);}
+.nav{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav::-webkit-scrollbar{display:none;}
+.nav a{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--text3);text-decoration:none;padding:7px 14px;border-left:1px solid var(--border);white-space:nowrap;transition:color .15s,background .15s;}
+.nav a:hover{color:var(--accent);background:rgba(79,195,247,.06);}
+
+/* HERO */
+.hero{
+  max-width:1100px;margin:0 auto;padding:60px 32px 48px;
+  border-bottom:1px solid var(--border);position:relative;z-index:1;
+}
+.hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.25em;color:var(--accent3);text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+.hero-eyebrow::after{content:'';flex:1;height:1px;background:var(--border);}
+.hero h1{font-family:var(--serif);font-size:clamp(24px,4vw,44px);font-weight:700;line-height:1.2;color:#e8f4ff;margin-bottom:16px;}
+.hero h1 em{font-style:normal;color:var(--accent);}
+.hero-sub{font-family:var(--mono);font-size:12px;color:var(--text3);line-height:1.9;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.tag{font-family:var(--mono);font-size:10px;letter-spacing:.08em;padding:4px 10px;border-radius:3px;border:1px solid;}
+.tag.blue{color:var(--accent);border-color:var(--accent3);background:rgba(79,195,247,.06);}
+.tag.gold{color:var(--gold);border-color:var(--gold2);background:rgba(255,213,79,.06);}
+.tag.green{color:var(--green);border-color:var(--green2);background:rgba(105,240,174,.06);}
+.tag.purple{color:var(--purple);border-color:var(--purple2);background:rgba(206,147,216,.06);}
+.tag.orange{color:var(--orange);border-color:var(--orange2);background:rgba(255,183,77,.06);}
+
+/* LAYOUT */
+.wrapper{max-width:1100px;margin:0 auto;padding:0 32px 80px;position:relative;z-index:1;}
+section{padding-top:56px;border-top:1px solid var(--border);margin-top:56px;}
+.sec-num{font-family:var(--mono);font-size:10px;letter-spacing:.25em;color:var(--text3);margin-bottom:10px;text-transform:uppercase;}
+h2{font-family:var(--serif);font-size:clamp(20px,3vw,30px);font-weight:700;color:#e0f0ff;margin-bottom:24px;padding-left:16px;border-left:2px solid var(--accent);}
+h3{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--accent2);letter-spacing:.1em;text-transform:uppercase;margin:36px 0 14px;display:flex;align-items:center;gap:8px;}
+h3::after{content:'';flex:1;height:1px;background:var(--border);}
+p{color:var(--text2);font-size:14.5px;margin-bottom:16px;line-height:1.85;word-break:keep-all;}
+
+/* FORMULA BOX */
+.formula{
+  background:var(--formula-bg);
+  border:1px solid var(--accent3);
+  border-radius:8px;
+  padding:24px 28px;
+  margin:24px 0;
+  font-family:var(--mono);
+  position:relative;
+  overflow-x:auto;
+}
+.formula-label{
+  position:absolute;top:-1px;left:16px;
+  font-size:10px;letter-spacing:.15em;
+  padding:3px 10px;
+  background:var(--accent3);color:#fff;
+  border-radius:0 0 4px 4px;
+  text-transform:uppercase;
+}
+.formula .eq{font-size:15px;color:var(--accent2);line-height:2.2;white-space:pre-wrap;}
+.formula .note{font-size:12px;color:var(--text3);margin-top:12px;line-height:1.7;}
+.formula .def{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;font-size:12px;margin-top:12px;}
+.formula .def dt{color:var(--gold);white-space:nowrap;}
+.formula .def dd{color:var(--text2);}
+.hi-blue{color:var(--accent);}
+.hi-gold{color:var(--gold);}
+.hi-green{color:var(--green);}
+.hi-red{color:var(--red);}
+.hi-orange{color:var(--orange);}
+.hi-purple{color:var(--purple);}
+
+/* TABLE */
+.tbl-wrap{overflow-x:auto;margin:20px 0;border-radius:8px;border:1px solid var(--border2);}
+table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:12.5px;}
+thead{background:var(--bg4);}
+thead th{padding:11px 14px;text-align:left;color:var(--accent2);letter-spacing:.06em;font-weight:500;border-bottom:1px solid var(--border2);white-space:nowrap;}
+tbody tr{border-bottom:1px solid var(--border);}
+tbody tr:last-child{border:none;}
+tbody tr:hover{background:rgba(79,195,247,.03);}
+tbody td{padding:10px 14px;color:var(--text2);vertical-align:top;line-height:1.6;}
+tbody td:first-child{color:var(--gold);font-weight:500;}
+.cell-green{color:var(--green)!important;}
+.cell-red{color:var(--red)!important;}
+.cell-blue{color:var(--accent)!important;}
+.cell-gold{color:var(--gold)!important;}
+
+/* CARD GRID */
+.grid{display:grid;gap:16px;margin:24px 0;}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:22px;transition:border-color .2s;}
+.card:hover{border-color:var(--border2);}
+.card-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.card-icon{font-family:var(--mono);font-size:18px;color:var(--accent);}
+.card-title{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent2);letter-spacing:.08em;text-transform:uppercase;}
+.card p{font-size:13.5px;margin:0;}
+.card.highlight{border-color:var(--accent3);}
+.card.highlight .card-title{color:var(--accent);}
+
+/* STEP BOX */
+.steps{margin:20px 0;}
+.step{display:flex;gap:16px;margin-bottom:20px;}
+.step-num{flex-shrink:0;width:32px;height:32px;background:var(--accent3);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:#fff;font-weight:500;}
+.step-body h4{font-family:var(--mono);font-size:12px;color:var(--accent2);margin-bottom:6px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;}
+.step-body p{font-size:13.5px;margin:0;}
+
+/* ALERT BOX */
+.alert{border-radius:8px;padding:18px 22px;margin:20px 0;display:flex;gap:14px;align-items:flex-start;}
+.alert-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+.alert p{font-size:13.5px;margin:0;line-height:1.75;}
+.alert.warn{background:rgba(255,183,77,.08);border:1px solid rgba(255,183,77,.3);}
+.alert.warn .alert-icon{color:var(--orange);}
+.alert.ok{background:rgba(105,240,174,.08);border:1px solid rgba(105,240,174,.25);}
+.alert.ok .alert-icon{color:var(--green);}
+.alert.info{background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.25);}
+.alert.info .alert-icon{color:var(--accent);}
+.alert.crit{background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.25);}
+.alert.crit .alert-icon{color:var(--red);}
+
+/* CODE */
+code{font-family:var(--mono);font-size:12.5px;background:rgba(79,195,247,.08);color:var(--accent2);padding:2px 6px;border-radius:3px;}
+.code-block{font-family:var(--mono);font-size:12px;background:var(--formula-bg);border:1px solid var(--border);border-radius:8px;padding:18px 22px;margin:16px 0;color:var(--text2);line-height:1.9;overflow-x:auto;white-space:pre-wrap;}
+
+/* PROOF BOX */
+.proof{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:28px;margin:24px 0;}
+.proof-header{font-family:var(--mono);font-size:11px;color:var(--purple);letter-spacing:.18em;text-transform:uppercase;margin-bottom:16px;}
+.proof-body{font-family:var(--mono);font-size:13px;color:var(--text2);line-height:2;}
+.proof .qed{text-align:right;font-size:18px;color:var(--accent);margin-top:16px;}
+
+/* FLOW DIAGRAM */
+.flow{display:flex;flex-direction:column;gap:0;margin:24px 0;}
+.flow-node{background:var(--bg3);border:1px solid var(--border2);border-radius:8px;padding:14px 20px;position:relative;}
+.flow-node.start{border-color:var(--green2);}
+.flow-node.proc{border-color:var(--accent3);}
+.flow-node.dec{border-color:var(--gold2);}
+.flow-node.end{border-color:var(--red);}
+.flow-arrow{text-align:center;font-family:var(--mono);font-size:20px;color:var(--text3);padding:4px 0;line-height:1;}
+.flow-label{font-family:var(--mono);font-size:11px;color:var(--text3);position:absolute;right:12px;top:50%;transform:translateY(-50%);}
+.flow-title{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--accent2);margin-bottom:4px;letter-spacing:.06em;}
+.flow-desc{font-size:13px;color:var(--text2);}
+.flow-branch{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0;}
+.branch-yes{background:rgba(105,240,174,.08);border:1px solid rgba(105,240,174,.25);border-radius:8px;padding:12px 16px;}
+.branch-no{background:rgba(255,82,82,.08);border:1px solid rgba(255,82,82,.2);border-radius:8px;padding:12px 16px;}
+.branch-label{font-family:var(--mono);font-size:10px;letter-spacing:.12em;margin-bottom:6px;text-transform:uppercase;}
+.branch-yes .branch-label{color:var(--green);}
+.branch-no .branch-label{color:var(--red);}
+.branch-text{font-size:13px;color:var(--text2);}
+
+/* REFUND TRACKER */
+.tracker{background:var(--bg2);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin:24px 0;}
+.tracker-head{background:var(--bg4);padding:14px 20px;font-family:var(--mono);font-size:12px;color:var(--accent2);letter-spacing:.1em;text-transform:uppercase;}
+.tracker-body{padding:0;}
+.tracker-row{display:flex;align-items:center;padding:14px 20px;border-bottom:1px solid var(--border);gap:16px;}
+.tracker-row:last-child{border:none;}
+.tracker-step{font-family:var(--mono);font-size:11px;color:var(--text3);width:60px;flex-shrink:0;}
+.tracker-action{flex:1;font-size:13.5px;color:var(--text2);}
+.tracker-form{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:3px;background:rgba(79,195,247,.1);color:var(--accent);border:1px solid var(--accent3);white-space:nowrap;}
+
+/* COMPARISON */
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;}
+.compare-col{background:var(--bg2);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.compare-head{padding:14px 18px;font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;}
+.compare-head.left{background:rgba(255,82,82,.1);color:var(--red);border-bottom:1px solid rgba(255,82,82,.2);}
+.compare-head.right{background:rgba(105,240,174,.1);color:var(--green);border-bottom:1px solid rgba(105,240,174,.2);}
+.compare-body{padding:16px 18px;}
+.compare-item{font-size:13.5px;color:var(--text2);padding:7px 0;border-bottom:1px solid var(--border);display:flex;align-items:flex-start;gap:8px;}
+.compare-item:last-child{border:none;}
+.compare-item::before{content:'▸';color:var(--text3);font-size:10px;flex-shrink:0;margin-top:4px;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);max-width:1100px;margin:0 auto;padding:28px 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;z-index:1;position:relative;}
+.footer-note{font-family:var(--mono);font-size:11px;color:var(--text3);}
+
+@media(max-width:640px){
+  .header-inner{padding:10px 16px;}
+  .hero,.wrapper{padding-left:16px;padding-right:16px;}
+  .compare{grid-template-columns:1fr;}
+  .flow-branch{grid-template-columns:1fr;}
+  footer{padding:20px 16px;flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">ROC<span>::</span>PROOF<span>::</span>TAX</div>
+    <nav class="nav">
+      <a href="#math">수학적 증명</a>
+      <a href="#ep">E&P 계산</a>
+      <a href="#fineng">금융공학</a>
+      <a href="#forms">계산툴·서식</a>
+      <a href="#qi">QI 재분류</a>
+      <a href="#personal">개인 세무대응</a>
+      <a href="#refund">환급청구</a>
+      <a href="#academic">학술원천</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">개인 세무대응 실전 수준 완전 학술 보고서</div>
+  <h1>ROC는 <em>이익도 잉여금도 아니다</em> —<br>수학·금융공학·제도권 완전 증명</h1>
+  <div class="hero-sub">
+    IRC §301·§312·§316 | E&P 계산공식 | REIT 감가상각 메커니즘 | Form 8937·1099-DIV·1042-S<br>
+    QI 재분류(Rev. Proc. 2022-43) | 1040-NR 환급청구 | 한미조세협약 Article 12·16 적용
+  </div>
+  <div class="hero-tags">
+    <span class="tag blue">IRC §301(c)(2) ROC</span>
+    <span class="tag gold">E&P ≡ 0 수학 증명</span>
+    <span class="tag green">Form 8937 근거</span>
+    <span class="tag purple">QI 소득 재분류</span>
+    <span class="tag orange">1042-S Income Code 37</span>
+    <span class="tag blue">1040-NR 환급</span>
+    <span class="tag gold">한미협약 Art.16 면제</span>
+  </div>
+</div>
+
+<div class="wrapper">
+
+<!-- ===== 섹션 1: 수학적 증명 ===== -->
+<section id="math">
+  <div class="sec-num">Section 01 — Mathematical Proof</div>
+  <h2>ROC가 이익·잉여금이 아님을 증명하는 수학</h2>
+
+  <p>
+    미국 세법에서 "배당(dividend)"은 오직 <strong>이익잉여금(Earnings and Profits, E&P)</strong> 범위 내에서만 발생합니다. ROC는 E&P가 <strong>0 또는 음수</strong>인 상황에서 지급되는 분배금의 잔여분으로, 수학적으로 이익 및 잉여금과 완전히 분리됩니다.
+  </p>
+
+  <h3>핵심 정의 공리 (IRC §316 기반)</h3>
+
+  <div class="formula">
+    <div class="formula-label">AXIOM — IRC §316(a)</div>
+    <div class="eq"><span class="hi-blue">Dividend</span> := Distribution × <span class="hi-gold">𝟙</span>[E&P_current > 0 ∨ E&P_accumulated > 0]
+
+<span class="hi-green">ROC</span>  := Distribution − <span class="hi-blue">Dividend</span>
+      = Distribution × <span class="hi-gold">𝟙</span>[E&P = 0]  (잉여금 소진 후 잔여분)</div>
+    <div class="note">
+      𝟙[·] = 지시함수(indicator function). E&P가 존재하면 1, 없으면 0.<br>
+      ROC는 오직 E&P가 완전히 소진되었을 때에만 정의됨 → <strong>이익의 함수가 아님</strong>.
+    </div>
+  </div>
+
+  <h3>분배금 3단계 분류 정리</h3>
+
+  <div class="formula">
+    <div class="formula-label">THEOREM — 분배금 성격 결정 공식</div>
+    <div class="eq">Distribution D에 대하여 (IRC §301(c)):
+
+<span class="hi-blue">Step 1. Dividend</span>  = min(D,  E&P_current + E&P_accumulated)
+           → <span class="hi-blue">과세 배당소득</span>  [IRC §301(c)(1)]
+
+<span class="hi-gold">Step 2. ROC</span>      = min(D − <span class="hi-blue">Step1</span>,  Adjusted_Basis)
+           → <span class="hi-gold">비과세 자본 반환</span>  [IRC §301(c)(2)]
+           → Adjusted_Basis <span class="hi-red">↓</span> (감소)
+
+<span class="hi-green">Step 3. Gain</span>     = max(D − <span class="hi-blue">Step1</span> − <span class="hi-gold">Step2</span>,  0)
+           → <span class="hi-green">자본이득</span>  [IRC §301(c)(3)]</div>
+    <div class="def">
+      <dt>D</dt><dd>= 분배금 총액 (Total Distribution)</dd>
+      <dt>E&P_current</dt><dd>= 당해 연도 이익잉여금 (IRC §312)</dd>
+      <dt>E&P_accumulated</dt><dd>= 누적 이익잉여금 (1913년 또는 법인 설립 이후)</dd>
+      <dt>Adjusted_Basis</dt><dd>= 주주의 주식 취득 원가 (IRC §1001)</dd>
+    </div>
+  </div>
+
+  <div class="proof">
+    <div class="proof-header">■ PROOF — ROC ≢ Earnings (ROC는 이익이 아님)</div>
+    <div class="proof-body">
+가정: D = 100, E&P_current = 0, E&P_accumulated = 0, Basis = 80
+
+Step 1: Dividend = min(100, 0+0) = <span class="hi-red">0</span>      ← 이익/잉여금 = 0이므로 배당 없음
+Step 2: ROC      = min(100-0, 80) = <span class="hi-gold">80</span>     ← Basis 소진
+Step 3: Gain     = max(100-0-80, 0) = <span class="hi-green">20</span>  ← 자본이득
+
+따라서: ROC = 80  ∧  Dividend = 0
+
+ROC > 0 이지만 Earnings = 0 이므로,
+ROC ≢ f(Earnings)  →  ROC는 이익의 함수가 아님  □
+    </div>
+    <div class="qed">∎ Q.E.D.</div>
+  </div>
+
+  <h3>항등식: E&P와 ROC의 배타적 관계</h3>
+
+  <div class="formula">
+    <div class="formula-label">IDENTITY — E&P ∩ ROC = ∅</div>
+    <div class="eq"><span class="hi-blue">Dividend_t</span> + <span class="hi-gold">ROC_t</span> + <span class="hi-green">Gain_t</span>  ≡  Distribution_t  (∀t)
+
+where:
+  <span class="hi-blue">Dividend_t</span>  = f(E&P)    → 이익의 함수
+  <span class="hi-gold">ROC_t</span>       = f(Basis)  → 취득원가의 함수  (E&P 無관)
+  <span class="hi-green">Gain_t</span>      = f(Basis − ROC)  → 잔여 원가 초과분
+
+∴ E&P와 ROC는 상호 배타적(mutually exclusive):
+  E&P > 0  →  전액 Dividend 처리  →  ROC = 0
+  E&P = 0  →  Dividend = 0  →  ROC = min(D, Basis)</div>
+  </div>
+
+  <h3>수치 예제: E&P 계산과 ROC 발생 조건</h3>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr><th>시나리오</th><th>분배금(D)</th><th>E&P_current</th><th>E&P_accumulated</th><th>Dividend</th><th>ROC</th><th>Gain</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A. 충분한 E&P</td><td>$100</td><td>$150</td><td>$200</td><td class="cell-blue">$100</td><td class="cell-gold">$0</td><td>$0</td></tr>
+        <tr><td>B. 부분 E&P</td><td>$100</td><td>$60</td><td>$0</td><td class="cell-blue">$60</td><td class="cell-gold">$40</td><td>$0</td></tr>
+        <tr><td>C. E&P 0 · Basis 충분</td><td>$100</td><td>$0</td><td>$0</td><td class="cell-red">$0</td><td class="cell-gold">$100</td><td>$0</td></tr>
+        <tr><td>D. E&P 0 · Basis 초과</td><td>$100</td><td>$0</td><td>$0</td><td class="cell-red">$0</td><td class="cell-gold">$60</td><td class="cell-green">$40</td></tr>
+        <tr><td>E. 적자 법인 REIT</td><td>$100</td><td>-$30</td><td>$20</td><td class="cell-blue">$20</td><td class="cell-gold">$80</td><td>$0</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">◈</div>
+    <p><strong>핵심 명제</strong>: 시나리오 C·D에서 법인의 장부상 손익과 무관하게 E&P = 0이면 분배금 전액이 ROC입니다. ROC는 "이익이 있어서 지급하는 것"이 아니라 "이익잉여금이 없는 상황에서 원금을 돌려주는 것"입니다. 이것이 IRC §316(a)의 수학적 귀결입니다.</p>
+  </div>
+</section>
+
+<!-- ===== 섹션 2: E&P 계산 ===== -->
+<section id="ep">
+  <div class="sec-num">Section 02 — E&P Calculation</div>
+  <h2>E&P(이익잉여금) 계산 공식 — 과세소득 ≠ E&P</h2>
+
+  <p>
+    E&P는 GAAP 회계 이익도 아니고 세무 과세소득도 아닙니다. E&P는 <strong>세법 고유의 개념</strong>으로, 과세소득에서 출발하여 IRC §312에 따른 수십 가지 조정을 거쳐 산출됩니다. 이 괴리가 ROC 발생의 핵심 원인입니다.
+  </p>
+
+  <div class="formula">
+    <div class="formula-label">E&P COMPUTATION — IRC §312</div>
+    <div class="eq">E&P_current  =  <span class="hi-blue">Taxable_Income</span>
+
+  <span class="hi-green">[ + 가산 항목 ]</span>
+  + 비과세 소득 (면세 채권 이자 등)            [IRC §103]
+  + 과세소득에서 공제된 연방소득세              [IRC §312(f)]
+  + 비용불인정 지출 (식대 50% 등)             [IRC §274]
+  + E&P 감가상각 vs 세무 감가상각 차이:
+      ADS 정액 감가상각(E&P용) > MACRS 가속상각(세무용)
+      → 세무에서 과잉 공제된 감가상각 <span class="hi-green">환원</span>
+
+  <span class="hi-red">[ - 차감 항목 ]</span>
+  − 연방소득세 납부액                          [IRC §312(f)]
+  − 비현금 이익 (일부 종류)
+  − 세무감가상각 < E&P감가상각인 경우 차이 차감
+
+  <span class="hi-gold">[ ± 특수 조정 ]</span>
+  ± 즉시상각(Bonus Depreciation / §179)      E&P에서 제한적 인정
+  ± NOL 이월공제                              E&P 계산에서 별도 취급
+  ± 재고자산 방법 차이 (LIFO → FIFO 전환 등)
+
+  ─────────────────────────────────────
+  <span class="hi-gold">E&P_current</span>  (당해연도 이익잉여금)</div>
+    <div class="note">
+      MACRS 가속 감가상각은 세무 과세소득을 줄이지만, E&P 계산에서는 ADS 정액법을 사용해야 하므로
+      E&P가 과세소득보다 높거나 낮을 수 있음 → <strong>세무 흑자여도 E&P 적자 가능 → ROC 발생</strong>
+    </div>
+  </div>
+
+  <h3>감가상각 괴리: REIT ROC의 수학적 근거</h3>
+
+  <div class="formula">
+    <div class="formula-label">REIT ROC 발생 메커니즘</div>
+    <div class="eq">REIT 순현금흐름(Cash FFO):
+  FFO  =  Net_Income  +  Depreciation  +  Amortization   [비현금 비용 환원]
+
+E&P 계산 (IRC §857):
+  E&P  =  Net_Income  +  ΔDepreciation(E&P - Tax)
+       ≈  Net_Income  +  (ADS_Depr - MACRS_Depr)
+
+분배금 지급 가능액:
+  Distribution  =  FFO  =  Net_Income  +  Depreciation(MACRS, 대규모)
+
+ROC 발생:
+  ROC  =  Distribution  −  E&P
+       =  (Net_Income + MACRS_Depr) − (Net_Income + ADS_Depr)
+       =  <span class="hi-gold">MACRS_Depr − ADS_Depr</span>  &gt; 0  (MACRS가 더 빠르므로)</div>
+    <div class="note">
+      결론: REIT의 ROC = 세무 가속 감가상각과 E&P용 정액 감가상각의 차이.
+      이것은 "감가상각비라는 비현금 세금 방패"를 투자자에게 패스스루(pass-through)하는 메커니즘.
+      → <strong>ROC는 이익의 반환이 아니라 세금 방패(tax shield)의 이전</strong>
+    </div>
+  </div>
+
+  <h3>E&P vs 과세소득 vs GAAP 비교</h3>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>항목</th><th>GAAP 순이익</th><th>세무 과세소득</th><th>E&P</th><th>비고</th></tr></thead>
+      <tbody>
+        <tr><td>감가상각</td><td>GAAP 정액</td><td>MACRS 가속</td><td>ADS 정액</td><td>3가지 상이</td></tr>
+        <tr><td>즉시상각(§179/보너스)</td><td>자본화</td><td>전액 공제</td><td>제한 인정</td><td>E&P 과대</td></tr>
+        <tr><td>면세 이자(지방채)</td><td>수익 포함</td><td>제외</td><td class="cell-green">포함</td><td>E&P 높아짐</td></tr>
+        <tr><td>연방소득세</td><td>비용 처리</td><td>공제 안됨</td><td class="cell-red">차감</td><td>E&P 낮아짐</td></tr>
+        <tr><td>NOL 공제</td><td>해당없음</td><td>공제 가능</td><td>별도 규칙</td><td>복잡한 조정</td></tr>
+        <tr><td>비용불인정(식대 등)</td><td>전액 비용</td><td>50% 공제</td><td class="cell-green">전액 차감</td><td>E&P 낮아짐</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="alert warn">
+    <div class="alert-icon">⚠</div>
+    <p><strong>실무 함의</strong>: 법인의 GAAP 순이익이 양수이고 세금도 냈더라도, E&P 계산 결과가 음수이거나 부족하면 지급된 분배금은 ROC입니다. 이것이 NVIDIA가 2015~2017년 배당을 전액 ROC로 보고한 이유이며 (Form 8937), REIT들이 연간 60~90%의 분배금을 ROC로 분류하는 수학적 근거입니다.</p>
+  </div>
+</section>
+
+<!-- ===== 섹션 3: 금융공학 ===== -->
+<section id="fineng">
+  <div class="sec-num">Section 03 — Financial Engineering</div>
+  <h2>금융공학적 관점: ROC의 현금흐름 구조</h2>
+
+  <h3>DCF와 ROC: 투자론적 증명</h3>
+
+  <div class="formula">
+    <div class="formula-label">FINANCIAL ENGINEERING — ROC의 자본 조정 효과</div>
+    <div class="eq">투자자 관점 손익 등식:
+
+  <span class="hi-blue">Total_Return</span>  =  Income_Return  +  Capital_Return
+
+  Income_Return  =  Dividends_Taxable / Cost_Basis
+  Capital_Return =  (Sale_Price − Adj_Cost_Basis) / Original_Cost_Basis
+
+ROC 효과:
+  Adj_Cost_Basis(t)  =  Adj_Cost_Basis(t-1)  −  ROC(t)
+
+  → ROC 누적 수령 시: Adj_Cost_Basis(T) = Original_Basis − Σ ROC(t)
+
+매도 시 자본이득:
+  Capital_Gain(T)  =  Sale_Price  −  Adj_Cost_Basis(T)
+                   =  Sale_Price  −  (Original_Basis − Σ ROC(t))
+                   =  [Sale_Price − Original_Basis]  +  <span class="hi-gold">Σ ROC(t)</span>
+                                                         ↑ ROC 수령만큼 자본이득 증가</div>
+    <div class="note">
+      ROC는 세금을 없애는 것이 아니라 <strong>과세 시점을 이연(defer)</strong>합니다.
+      매도 전까지: 비과세 / 매도 후: 자본이득세(15~20%) 적용
+      → 한국 거주자의 경우 한미조세협약 Art.16으로 미국 자본이득세 면제 가능
+    </div>
+  </div>
+
+  <h3>REITs/MLPs: 구조적 ROC 발생 메커니즘</h3>
+
+  <div class="grid g3">
+    <div class="card highlight">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">감가상각 패스스루</span></div>
+      <p>REIT는 부동산 감가상각(MACRS: 27.5년 주거용, 39년 상업용)을 세무상 공제하나 현금유출은 없음. 이 비현금 공제로 인해 E&P < FFO(Funds From Operations). 차이가 ROC로 지급됨.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">MLP 자원 고갈</span></div>
+      <p>석유·가스 MLP(Master Limited Partnership)는 자원 매장량 감소분(Depletion)을 비현금 비용으로 처리. 운영 현금흐름 > 과세소득 → 초과 분배분이 ROC. IRC §611~613 규정 적용.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">폐쇄형 펀드(CEF)</span></div>
+      <p>CEF는 관리 수익배분 정책(Managed Distribution Policy)으로 월별 고정 분배를 지급. 시장 하락기 또는 수익 부족 시 원금에서 충당 → ROC. Constructive vs Destructive ROC 구분이 핵심.</p>
+    </div>
+  </div>
+
+  <h3>ROC 세금 이연 효과 (현재가치 분석)</h3>
+
+  <div class="formula">
+    <div class="formula-label">NPV of Tax Deferral via ROC</div>
+    <div class="eq">즉시 과세 시 세금 납부 현재가치:
+  PV_immediate  =  ROC × τ_ordinary   (배당으로 처리될 경우)
+
+ROC로 이연 후 매도 시 세금 현재가치:
+  PV_deferred   =  (ROC × τ_cg) / (1+r)^T
+
+이연 효과 (Tax Deferral Benefit):
+  Benefit  =  ROC × [τ_ordinary  −  τ_cg / (1+r)^T]
+
+수치 예시 (τ_ordinary=37%, τ_cg=20%, r=5%, T=10년):
+  PV_immediate = ROC × 0.37
+  PV_deferred  = ROC × 0.20 / (1.05)^10  =  ROC × 0.1228
+  
+  Benefit      = ROC × (0.37 − 0.1228)   =  <span class="hi-green">ROC × 0.2472 (24.7% 절세 효과)</span></div>
+    <div class="note">
+      한국 거주자의 경우: τ_cg = 0% (한미협약 Art.16 자본이득 면제) 적용 가능 →<br>
+      Benefit = ROC × τ_ordinary = <span style="color:var(--green)">전액 절세</span> (단, 한국 국내 양도소득세 별도 검토 필요)
+    </div>
+  </div>
+</section>
+
+<!-- ===== 섹션 4: 계산툴·서식 ===== -->
+<section id="forms">
+  <div class="sec-num">Section 04 — Calculation Tools & Forms</div>
+  <h2>ROC 증명을 위한 계산 툴과 공식 서식</h2>
+
+  <p>개인 세무대응에서 ROC가 이익이 아님을 <strong>공식 문서로 증명</strong>하기 위해 필요한 서식과 계산 도구를 정리합니다.</p>
+
+  <h3>핵심 서식 체계</h3>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>서식</th><th>목적</th><th>발행자</th><th>ROC 관련 항목</th><th>활용 방법</th></tr></thead>
+      <tbody>
+        <tr><td>Form 1099-DIV</td><td>배당·ROC 신고</td><td>분배 법인/펀드</td><td>Box 3: Nondividend Distributions (ROC)</td><td>ROC 금액 확인, Basis 조정 근거</td></tr>
+        <tr><td>Form 8937</td><td>기업행동이 Basis에 미치는 영향 신고</td><td>발행 법인</td><td>ROC 금액·조정 비율 공시</td><td>IRC §1.6045B-1 의무 공시, 가장 강력한 ROC 증거</td></tr>
+        <tr><td>Form 1042-S</td><td>외국인 미국 원천 소득 신고</td><td>QI/원천징수 대리인</td><td>Income Code: 06(배당), 37(기타소득) 등</td><td>비거주자 ROC 처리 시 소득 재분류 근거</td></tr>
+        <tr><td>Form 1040-NR</td><td>비거주자 세금신고·환급청구</td><td>납세자</td><td>Schedule NEC: 원천징수 초과액 환급</td><td>ROC에 과다 원천징수된 세금 환급 신청</td></tr>
+        <tr><td>Form W-8BEN</td><td>비거주자 신분·협약 혜택 청구</td><td>납세자</td><td>Part II: 조세협약 조항 기재</td><td>QI에 제출하여 협약 세율 적용</td></tr>
+        <tr><td>Form 1120-REIT</td><td>REIT 법인세 신고</td><td>REIT</td><td>E&P 계산, 배당 성격 결정</td><td>REIT ROC 성격 규명 1차 자료</td></tr>
+        <tr><td>Schedule B (1040)</td><td>배당·이자 명세</td><td>납세자</td><td>Box 3 ROC는 여기서 제외</td><td>ROC는 Sch.B에 포함 안 됨 → 비과세 증명</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Form 8937 — ROC 증명의 핵심 공식 문서</h3>
+
+  <div class="code-block">Form 8937 (Report of Organizational Actions Affecting Basis of Securities)
+법적 근거: IRC §6045B, Treas. Reg. §1.6045B-1
+
+Part I  — Issuer 정보
+  Box 1:  발행 법인명 (예: FirstEnergy Corp., NVIDIA Corp.)
+  Box 4:  기업행동 일자
+
+Part II — Organizational Action 내용
+  Box 14: 기업행동의 설명
+  Box 15: Basis에 미치는 정량적 효과 (1주당 ROC 금액, 또는 % 비율)
+           예: "분배금의 27.68%가 비과세 ROC로 주당 $0.008996 Basis 감소"
+  Box 16: 변경 계산 방법 및 근거 데이터
+           예: "E&P와 배당금 비교: IRC §316 적용. E&P < 분배금 → 초과분 ROC"
+  Box 17: 적용 IRC 조문 — §301, §312, §316 명시
+
+실무 사용:
+  → 세무대리인에게 제출 시 ROC 성격 증명 서류
+  → 브로커에게 Adjusted Basis 업데이트 요청 근거
+  → IRS 감사 시 ROC 처리 적정성 증명</div>
+
+  <h3>E&P 워크시트 계산 절차</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h4>과세소득 확인</h4>
+        <p>Form 1120(법인세 신고서) Line 28의 과세소득을 E&P 계산 출발점으로 설정. 이후 IRC §312 조정 항목을 체계적으로 적용.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h4>감가상각 재계산 (E&P용 ADS)</h4>
+        <p>세무 신고에서 사용한 MACRS 가속 감가상각을 ADS(Alternative Depreciation System) 정액법으로 재계산. 차이 금액을 E&P에 가산(ADS > MACRS면) 또는 차감(ADS &lt; MACRS면).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h4>특수 가산·차감 항목 반영</h4>
+        <p>면세 이자 수입 가산 / 연방소득세 납부액 차감 / 비용불인정 지출 조정 / §179·보너스 상각 조정 등 수십 가지 항목을 IRC §312(a)~(n)에 따라 반영.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h4>누적 E&P 계산</h4>
+        <p>E&P_accumulated(T) = Σ E&P_current(t) − Σ Dividends_paid(t) (t=1913 또는 설립년도~현재). LIFO 원칙: 당해연도 E&P 우선 배분(IRC §316(a)).</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h4>ROC 금액 결정</h4>
+        <p>ROC = Distribution − min(Distribution, E&P_current + E&P_accumulated). 결과값이 양수이면 해당 금액이 ROC이고, Form 1099-DIV Box 3에 표시됨.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>개인 투자자 Basis 추적 툴</h3>
+
+  <div class="formula">
+    <div class="formula-label">INDIVIDUAL INVESTOR — Adjusted Basis Tracking</div>
+    <div class="eq">초기 취득 원가 설정:
+  Adjusted_Basis(0)  =  Purchase_Price + Commission + Fees
+
+ROC 수령 시마다 조정:
+  Adjusted_Basis(t)  =  Adjusted_Basis(t-1) − ROC_received(t)
+
+  단, Adjusted_Basis는 0 미만 불가:
+  Adjusted_Basis(t)  =  max(Adjusted_Basis(t-1) − ROC(t),  0)
+  Excess             =  max(ROC(t) − Adjusted_Basis(t-1),  0)  → <span class="hi-green">즉시 자본이득 인식</span>
+
+매도 시:
+  Recognized_Gain    =  Sale_Price − Adjusted_Basis(T)
+  Holding_Period     =  결정 → 단기(39.6%) vs 장기(0/15/20%) 세율 적용</div>
+    <div class="note">
+      실용 툴: IRS Publication 550 Appendix A (Basis Worksheet) 활용.<br>
+      Wolters Kluwer 'Capital Changes' 서비스: Form 8937 기반 자동 Basis 업데이트 제공.
+    </div>
+  </div>
+</section>
+
+<!-- ===== 섹션 5: QI 재분류 ===== -->
+<section id="qi">
+  <div class="sec-num">Section 05 — QI Reclassification</div>
+  <h2>QI(적격 중개인) 재분류와 ROC 원천징수 정정</h2>
+
+  <p>
+    한국 거주자가 미국 펀드·REITs에서 ROC를 수령할 때, 한국 증권사(QI 자격 보유 시) 또는 미국 수탁기관이 ROC를 <strong>배당(Dividend)으로 오분류</strong>하여 30% 또는 15%(한미협약) 원천징수를 부과하는 경우가 발생합니다. 이 경우 QI 재분류 절차를 통해 환급 가능합니다.
+  </p>
+
+  <h3>QI 시스템의 구조와 ROC 처리</h3>
+
+  <div class="grid g2">
+    <div class="card highlight">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">QI란?</span></div>
+      <p>외국 금융기관이 IRS와 체결하는 협약(Rev. Proc. 2022-43, 2023 QI Agreement). QI는 <strong>원천징수 대리인</strong>으로서 Chapter 3(비거주자 원천징수), Chapter 4(FATCA)의 의무를 자체적으로 이행. 원천징수율 풀(withholding rate pool)로 보고 가능.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">ROC의 QI 처리 문제</span></div>
+      <p>펀드가 연말 전 ROC·배당 비율을 확정하지 못해 일단 <strong>전액 배당(Code 06)</strong>으로 원천징수 후 연말 Form 8937로 ROC 금액을 공시하는 경우가 많음. 이때 QI가 재분류(reclassification)를 수행하지 않으면 투자자가 초과 납부.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">1042-S 소득코드</span></div>
+      <p>Form 1042-S Box 1 Income Code: 06=배당, 15=단기자본이득, 16=장기자본이득, <strong>37=기타소득(ROC 처리 시 사용)</strong>. QI가 배당(06)으로 발급한 1042-S를 정정하여 37로 재발급하면 원천징수 0% 또는 협약세율 적용.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">집합 환급(Collective Refund)</span></div>
+      <p>QI는 고객을 대리하여 <strong>집합 환급(Collective Refund)</strong> 신청 가능(2023 QI Agreement §9). 단, PTP(상장 파트너십) 분배 관련 초과 원천징수는 집합 환급 불가 → 투자자 개별 1040-NR 신청 필요.</p>
+    </div>
+  </div>
+
+  <h3>QI 재분류 절차 상세</h3>
+
+  <div class="tracker">
+    <div class="tracker-head">QI ROC 재분류 워크플로</div>
+    <div class="tracker-body">
+      <div class="tracker-row">
+        <div class="tracker-step">STEP 1</div>
+        <div class="tracker-action">펀드/REIT가 Form 8937 공시 (연말 E&P 확정 후, 통상 이듬해 1~2월)</div>
+        <div class="tracker-form">Form 8937</div>
+      </div>
+      <div class="tracker-row">
+        <div class="tracker-step">STEP 2</div>
+        <div class="tracker-action">QI(한국 증권사·수탁기관)가 ROC 비율 확인 → 원천징수 초과액 계산</div>
+        <div class="tracker-form">Internal Worksheet</div>
+      </div>
+      <div class="tracker-row">
+        <div class="tracker-step">STEP 3</div>
+        <div class="tracker-action">1042-S 수정 발급: Income Code 06→37, 원천징수액 정정</div>
+        <div class="tracker-form">Form 1042-S (수정)</div>
+      </div>
+      <div class="tracker-row">
+        <div class="tracker-step">STEP 4</div>
+        <div class="tracker-action">QI가 집합 환급 신청 (가능한 경우) 또는 고객에게 개별 신청 안내</div>
+        <div class="tracker-form">Form 1042</div>
+      </div>
+      <div class="tracker-row">
+        <div class="tracker-step">STEP 5</div>
+        <div class="tracker-action">개인 투자자: 수정 1042-S 수령 후 1040-NR 제출하여 환급 청구</div>
+        <div class="tracker-form">Form 1040-NR</div>
+      </div>
+      <div class="tracker-row">
+        <div class="tracker-step">STEP 6</div>
+        <div class="tracker-action">IRS가 환급 처리 (통상 6~12주, 우편 제출 시 더 길어질 수 있음)</div>
+        <div class="tracker-form">IRS Refund</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>원천징수율 풀(Withholding Rate Pool) — 배당 vs ROC</h3>
+
+  <div class="formula">
+    <div class="formula-label">QI WITHHOLDING RATE POOL CALCULATION</div>
+    <div class="eq">총 분배금 100 (QI가 한국 투자자에게 지급):
+
+[잘못된 분류 — 전액 배당 처리]
+  배당(Code 06):   100
+  원천징수(15%):    15  ← 한미협약 적용
+  투자자 수령:      85
+
+[Form 8937 발표 후 — ROC 60% 확정]
+  배당(Code 06):    40  (E&P 범위)   → 원천징수 15% = 6
+  ROC(Code 37):     60  (E&P 초과분) → 원천징수 0% = 0
+
+  정당 세금:         6
+  기납부 세금:       15
+  <span class="hi-green">환급 대상:          9  (= 15 − 6)</span>
+
+1042-S 수정 발급:
+  원본: Income Code 06, Amount 100, Withholding 15
+  수정: Income Code 06, Amount 40, Withholding 6
+        Income Code 37, Amount 60, Withholding 0</div>
+  </div>
+
+  <h3>W-8BEN 협약 혜택 청구 — 실전 기재 요령</h3>
+
+  <div class="code-block">Form W-8BEN (Certificate of Foreign Status of Beneficial Owner)
+한국 거주자 → 미국 소득 협약 혜택 청구 시
+
+Part I — Identification
+  Line 1:  성명 (영문)
+  Line 2:  국적: Republic of Korea
+  Line 4:  영구 주소 (한국 주소)
+  Line 6:  한국 납세자 번호 (주민등록번호 또는 사업자번호)
+
+Part II — Claim of Tax Treaty Benefits
+  Line 9:  I certify that the beneficial owner is a resident of
+           "Republic of Korea" within the meaning of the income tax treaty
+           between the United States and that country.
+  Line 10: Article 12 (Dividends) → Rate: 15% (or 10% if qualifying corp)
+           Article 16 (Capital Gains) → Rate: 0% (exempt)
+
+  서명일·서명
+
+핵심 포인트:
+  → ROC는 배당(Art.12)이 아니므로 원천징수 대상 아님
+  → 매도 시 자본이득은 Art.16으로 면제 (단 부동산 관련 제외)
+  → W-8BEN 유효기간: 서명 후 3년 (기간 중 변경사항 없으면 계속 유효)</div>
+
+  <div class="alert crit">
+    <div class="alert-icon">⚑</div>
+    <p><strong>주의 — PTP(상장 파트너십) 예외</strong>: 2023 QI Agreement부터 PTP(예: MLP ETF, 에너지 인프라 파트너십) 분배금에 대한 원천징수(§1446(a)(f))는 집합 환급 불가. 개인 투자자가 직접 Form 1040-NR을 제출해야 하며, 원천징수 대리인으로부터 개별 Form 1042-S를 수령해야 합니다 (TIN 제공 필수).</p>
+  </div>
+</section>
+
+<!-- ===== 섹션 6: 개인 세무대응 ===== -->
+<section id="personal">
+  <div class="sec-num">Section 06 — Personal Tax Response Strategy</div>
+  <h2>개인 세무대응 실전 전략</h2>
+
+  <h3>ROC 수령 시 개인 대응 플로우차트</h3>
+
+  <div class="flow">
+    <div class="flow-node start">
+      <div class="flow-title">START — 미국 펀드/REIT/CEF 분배금 수령</div>
+      <div class="flow-desc">분배금 수령 후 연말 Form 1099-DIV 또는 Form 1042-S 수령</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node dec">
+      <div class="flow-title">판단 1: Box 3 (1099-DIV) 또는 Income Code 37 (1042-S)?</div>
+      <div class="flow-desc">ROC 금액이 명시되어 있는지 확인</div>
+    </div>
+    <div class="flow-branch">
+      <div class="branch-yes">
+        <div class="branch-label">YES — ROC 명시됨</div>
+        <div class="branch-text">해당 금액만큼 취득원가(Adjusted Basis) 감소 처리. 당해연도 세금 신고에서 ROC 금액 제외. Form 8937 보관.</div>
+      </div>
+      <div class="branch-no">
+        <div class="branch-label">NO — 전액 배당으로 표시됨</div>
+        <div class="branch-text">펀드의 Form 8937 공시 확인 (이듬해 1~2월). ROC 비율 확인 후 QI/브로커에 1042-S 수정 요청.</div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node proc">
+      <div class="flow-title">취득원가 조정 — Adjusted Basis 업데이트</div>
+      <div class="flow-desc">Adj_Basis(new) = Adj_Basis(old) − ROC 금액. Adj_Basis가 0 미만이면 초과분은 즉시 자본이득으로 인식.</div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node dec">
+      <div class="flow-title">판단 2: 원천징수 여부 확인 (비거주자의 경우)</div>
+      <div class="flow-desc">ROC에 원천징수(15% 또는 30%)가 부과되었는가?</div>
+    </div>
+    <div class="flow-branch">
+      <div class="branch-yes">
+        <div class="branch-label">YES — 원천징수 발생</div>
+        <div class="branch-text">수정 Form 1042-S 수령 후 Form 1040-NR 제출하여 환급 청구. 한미협약 Art.12·16 명시.</div>
+      </div>
+      <div class="branch-no">
+        <div class="branch-label">NO — 원천징수 없음</div>
+        <div class="branch-text">정상 처리. 취득원가만 관리. 매도 시점에 자본이득 계산.</div>
+      </div>
+    </div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-node end">
+      <div class="flow-title">연말 세금신고 (한국 종합소득세)</div>
+      <div class="flow-desc">ROC는 미국에서 비과세이나, 한국 세법상 처리 방식 별도 검토 필요. 세무사 자문 권장.</div>
+    </div>
+  </div>
+
+  <h3>일반 배당 vs ROC: 개인 투자자 관점 비교</h3>
+
+  <div class="compare">
+    <div class="compare-col">
+      <div class="compare-head left">배당 (Dividend) — IRC §301(c)(1)</div>
+      <div class="compare-body">
+        <div class="compare-item">E&P 범위 내 지급</div>
+        <div class="compare-item">수령 연도에 즉시 과세</div>
+        <div class="compare-item">한미협약: 15% 원천징수 (Art.12)</div>
+        <div class="compare-item">1042-S Income Code 06</div>
+        <div class="compare-item">취득원가(Basis) 변동 없음</div>
+        <div class="compare-item">GAAP 순이익과 연동</div>
+        <div class="compare-item">한국 종합소득세 신고 필요</div>
+      </div>
+    </div>
+    <div class="compare-col">
+      <div class="compare-head right">ROC — IRC §301(c)(2)</div>
+      <div class="compare-body">
+        <div class="compare-item">E&P 초과 또는 E&P = 0 시 발생</div>
+        <div class="compare-item">수령 연도 비과세 (과세 이연)</div>
+        <div class="compare-item">원천징수 해당 없음 (0%)</div>
+        <div class="compare-item">1042-S Income Code 37</div>
+        <div class="compare-item">Basis 감소 → 매도 시 자본이득 증가</div>
+        <div class="compare-item">감가상각 등 비현금 항목에서 발생</div>
+        <div class="compare-item">한국 세법상 별도 검토 필요</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>한국 거주자 특수 고려사항</h3>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">한미협약 Art.16 자본이득 면제</span></div>
+      <p>ROC로 Basis 감소 후 매도 시 발생하는 자본이득: 한미협약 Art.16에 따라 미국에서 원칙적으로 면세 (부동산·PE 관련 제외). 단, 한국 국내에서 양도소득세 부과 가능 여부 별도 검토 필수.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">해외금융계좌 신고(FBAR·FATCA)</span></div>
+      <p>미국 계좌 잔고 $10,000 초과 시 FBAR(FinCEN 114) 신고 의무. 미국 금융자산 $50,000/$100,000 초과 시 FATCA(Form 8938) 신고. ROC 수령 자체가 추가 신고 의무를 발생시키지는 않으나 계좌 잔고 관리 필요.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">한국 종합소득세 처리</span></div>
+      <p>미국에서 ROC로 비과세 처리된 금액의 한국 내 세무 처리는 명확한 입법 사례가 부족. 실무상 한국 세무사와 협의하여 처리. ROC 수령액을 취득원가 감소로 처리하는 것이 경제적 실질에 부합.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">이중과세 방지 세액공제</span></div>
+      <p>ROC 부분에 미국 원천징수가 부과된 경우 → 미국에서 환급 후 한국 소득세 신고 시 외국납부세액공제 불가(환급받았으므로). 환급 전 미국세를 한국에서 공제하면 이중 혜택 문제 발생.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 섹션 7: 환급청구 ===== -->
+<section id="refund">
+  <div class="sec-num">Section 07 — Refund Claim Procedure</div>
+  <h2>원천징수 초과 납부 환급 청구 절차</h2>
+
+  <h3>환급 가능 시나리오</h3>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>시나리오</th><th>원인</th><th>환급 방법</th><th>필요 서식</th><th>기한</th></tr></thead>
+      <tbody>
+        <tr><td>ROC에 배당세율 적용</td><td>QI가 전액 배당으로 오분류</td><td>1040-NR 제출</td><td class="cell-blue">1042-S(수정), 1040-NR</td><td>원천징수 연도 후 3년</td></tr>
+        <tr><td>협약세율 미적용 (30% 징수)</td><td>W-8BEN 미제출 또는 갱신 누락</td><td>1040-NR 제출</td><td class="cell-blue">W-8BEN, 1042-S, 1040-NR</td><td>원천징수 연도 후 3년</td></tr>
+        <tr><td>배당 협약세율 초과 징수</td><td>QI 시스템 오류</td><td>QI 집합 환급 또는 1040-NR</td><td class="cell-blue">1042-S(수정)</td><td>원천징수 연도 후 3년</td></tr>
+        <tr><td>PTP 분배 과다 징수</td><td>§1446(f) 10% 징수 후 실제 이익 적음</td><td>1040-NR (집합 환급 불가)</td><td class="cell-blue">개별 1042-S, TIN 필요</td><td>원천징수 연도 후 3년</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Form 1040-NR 환급청구 실전 작성 요령</h3>
+
+  <div class="code-block">Form 1040-NR (U.S. Nonresident Alien Income Tax Return)
+ROC 관련 원천징수 환급 청구 시 필수 기재 사항
+
+Page 1 — Filing Information
+  체크: Nonresident alien individual
+  세금연도: 원천징수 발생 연도
+
+Schedule NEC (Tax on Income Not Effectively Connected)
+  Line 1  — Dividends (배당 — 정당한 배당 금액만 기재)
+  Column (c) — Treaty Rate: 15% (Art.12)
+  Column (d) — Tax withheld by treaty
+  
+  ※ ROC는 Schedule NEC에 포함하지 않음
+     (소득이 아니므로 신고 대상 아님)
+
+Page 2 — Tax Computation
+  Line 52 — Total tax
+  Line 64 — Federal income tax withheld
+             (1042-S Box 7a의 원천징수 총액 기재)
+  Line 75 — Amount overpaid = Line 64 − Line 52
+  Line 76 — Refund 선택 → 환급 계좌 기재
+
+필수 첨부 서류:
+  □ Form 1042-S (원본 및 수정본이 있으면 수정본)
+  □ Form W-8BEN 사본
+  □ 협약 혜택 주장 설명서 (Treaty-Based Return Position)
+  □ 여권 사본 (신분 확인)
+
+제출 주소: IRS Austin Campus (국제 신고용)
+  Internal Revenue Service
+  P.O. Box 1303, Charlotte, NC 28201-1303 USA</div>
+
+  <div class="alert ok">
+    <div class="alert-icon">✓</div>
+    <p><strong>환급 타임라인</strong>: 일반적으로 제출 후 6~12주. IRS Where's My Refund 도구로 추적 가능. 수정 Form 1042-S가 IRS에 제출된 원본과 다를 경우 처리 지연 및 환급 거부 가능 → QI에 반드시 IRS 제출본과 일치하는 Form 1042-S 수령 확인.</p>
+  </div>
+
+  <h3>개인 환급 청구 금액 계산 예시</h3>
+
+  <div class="formula">
+    <div class="formula-label">REFUND CALCULATION EXAMPLE</div>
+    <div class="eq">상황: 한국 거주 개인투자자 A씨가 미국 REIT ETF에서 연간 $1,000 분배금 수령.
+원래 1042-S: Income Code 06 (배당), 원천징수 $150 (15%).
+연말 Form 8937 공시: ROC 비율 70% (E&P 30% + ROC 70%).
+
+[정당한 원천징수 계산]
+배당 부분:  $1,000 × 30% = $300  → 세율 15% → 세금 $45
+ROC 부분:   $1,000 × 70% = $700  → 세율  0% → 세금  $0
+정당 세금 합계:                                        <span class="hi-green">$45</span>
+
+[환급 금액]
+기납부 원천징수: $150
+정당 세금:        $45
+─────────────────
+환급 대상:       <span class="hi-green">$105</span>  (= $150 − $45)
+
+[1040-NR 기재]
+Schedule NEC Line 1: $300 (배당), Tax withheld by treaty: $45
+Line 64 (총 납부): $150
+Line 75 (환급): $105</div>
+  </div>
+</section>
+
+<!-- ===== 섹션 8: 학술 원천 ===== -->
+<section id="academic">
+  <div class="sec-num">Section 08 — Academic & Authoritative Sources</div>
+  <h2>원천 학술 자료 및 공식 권위 문헌</h2>
+
+  <h3>1차 법령·규정 자료 (Primary Sources)</h3>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>문서</th><th>내용</th><th>URL / 출처</th></tr></thead>
+      <tbody>
+        <tr><td>IRC §301</td><td>재산 분배 세무 처리 (Dividend/ROC/Gain 3단계)</td><td>IRS.gov / Bloomberg Tax</td></tr>
+        <tr><td>IRC §312</td><td>E&P 계산 공식 (과세소득 → E&P 조정)</td><td>IRS.gov</td></tr>
+        <tr><td>IRC §316</td><td>배당의 정의 및 LIFO 배분 원칙</td><td>IRS.gov</td></tr>
+        <tr><td>Treas. Reg. §1.301-1</td><td>분배 처리 세부 규정</td><td>26 CFR §1.301-1</td></tr>
+        <tr><td>Treas. Reg. §1.312-6</td><td>E&P 계산 방법 세부 (감가상각 조정 등)</td><td>26 CFR §1.312-6</td></tr>
+        <tr><td>Treas. Reg. §1.6045B-1</td><td>Form 8937 공시 의무 규정</td><td>26 CFR §1.6045B-1</td></tr>
+        <tr><td>Rev. Proc. 2022-43</td><td>2023 QI Agreement (QI 원천징수 협약)</td><td>IRS Internal Revenue Bulletin 2022-52</td></tr>
+        <tr><td>한미조세협약 원문</td><td>1976.6.4 서명, 1979.10.20 발효</td><td>IRS.gov/pub/irs-trty/korea.pdf</td></tr>
+        <tr><td>Technical Explanation</td><td>한미협약 기술적 해설 (재무부·상원 제출본)</td><td>IRS.gov/pub/irs-trty/koreatech.pdf</td></tr>
+        <tr><td>IRS Pub. 515</td><td>비거주자 원천징수 안내 (Pub. 515)</td><td>IRS.gov/pub/irs-pdf/p515.pdf</td></tr>
+        <tr><td>IRS Pub. 550</td><td>투자 소득·지출 안내 (Basis Worksheet 포함)</td><td>IRS.gov/pub/irs-pdf/p550.pdf</td></tr>
+        <tr><td>Instructions for Form 1042-S (2026)</td><td>소득 코드 37·38 정의 포함</td><td>IRS.gov/instructions/i1042s</td></tr>
+        <tr><td>Instructions for Form 8937</td><td>ROC 신고 의무 및 방법</td><td>IRS.gov/pub/irs-pdf/i8937.pdf</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>핵심 학술 논문·전문가 분석</h3>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">E&P 케이스 스터디</span></div>
+      <p><em>"Earnings and Profits Computation Case Study"</em> — The Tax Adviser (AICPA), 2013년 10월호. AnyCo 사례로 6개년 E&P 계산과 ROC 발생 조건을 수치로 증명. IRC §301·312·316 적용 실전.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">E&P 계산 권위 해설</span></div>
+      <p><em>"Tax Implications of E&P Calculations for Dividend Determinations"</em> — Cummings &amp; Cummings Law (2026). "E&P는 GAAP도 아니고 과세소득도 아닌 세법 고유 개념"임을 명시. 감가상각 차이의 누적 효과 분석.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">REIT ROC 세금 효과</span></div>
+      <p><em>"Tax Advantages of Non-Listed REITs"</em> — J.P. Morgan Asset Management. REIT 감가상각이 ROC를 창출하는 메커니즘 설명. "분배금의 60~90%가 ROC로 분류 가능"한 수학적 근거 제시.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">QI 협약 전문 분석</span></div>
+      <p><em>"US IRS Issues Final 2023 QI Agreement and Additional Guidance for §1446(f)"</em> — Mayer Brown (2023). 2023 QI Agreement의 PTP 조항·QDD·집합 환급 제한 조항 등 ROC 재분류 관련 핵심 변경 사항 분석.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">Return of Capital (Wikipedia)</span></div>
+      <p>금융공학적 관점에서 ROC 발생 원천: "감가상각은 현금을 소비하지 않지만 수익을 줄이며, 이 비현금 비용의 환원이 ROC를 만든다." REIT·석유가스 트러스트·폐쇄형 펀드의 구조적 ROC 메커니즘 설명.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">TAS 연간 보고서</span></div>
+      <p>National Taxpayer Advocate Annual Report to Congress. 납세자 관점에서 ROC 처리 오류, 취득원가 추적 시스템 문제를 '가장 심각한 납세자 문제'로 반복 지적. 세무 행정 개선을 위한 공식 의회 보고서.</p>
+    </div>
+  </div>
+
+  <h3>실전 활용 계산 도구</h3>
+
+  <div class="grid g3">
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">Wolters Kluwer Capital Changes</span></div>
+      <p>Form 8937 기반 자동 Basis 업데이트 서비스. 상장 법인의 ROC 공시 통합 추적. 브로커·세무사 활용.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">IRS Tax Withholding Estimator</span></div>
+      <p>원천징수 예상액 계산. ROC 제외 후 배당 부분에만 적용. irs.gov/W4app</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">EDGAR (SEC)</span></div>
+      <p>REIT·CEF의 Form 8937, 연간 보고서(10-K)에서 E&P 계산 결과 및 ROC 비율 공식 확인. sec.gov/cgi-bin/browse-edgar</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">IRS QI QAAMS Portal</span></div>
+      <p>QI 신청·갱신·인증·종료 시스템. QI 자격 확인 및 주기적 컴플라이언스 인증. irs.gov/QAAMS</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">Bloomberg Tax / Tax Notes</span></div>
+      <p>IRC §301·312·316 전문, Revenue Ruling, Private Letter Ruling 검색. 가장 포괄적인 세법 1차 자료 데이터베이스.</p>
+    </div>
+    <div class="card">
+      <div class="card-head"><span class="card-icon">⬛</span><span class="card-title">Sprintax Returns</span></div>
+      <p>비거주자(NRA) 전용 1040-NR 전자신고 서비스. 1042-S 기반 원천징수 환급 청구 지원. TurboTax의 비거주자 파트너.</p>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">◈</div>
+    <p><strong>학술 조사 결론</strong>: ROC가 이익이나 잉여금이 아님은 (1) IRC §316의 수학적 정의, (2) E&P 계산 공식(과세소득 ≠ E&P), (3) REIT 감가상각 메커니즘(비현금 비용의 패스스루), (4) Form 8937·1099-DIV Box 3의 공식 보고 체계, (5) QI의 Income Code 37 분류, (6) 한미조세협약 Art.16 자본이득 면제 규정 — 이 6가지 제도·수학·금융공학적 층위에서 다면적으로 증명됩니다. 개인 투자자는 이 구조를 이해하고 환급 가능한 원천징수를 적극적으로 청구할 수 있습니다.</p>
+  </div>
+</section>
+
+</div><!-- /wrapper -->
+
+<footer>
+  <div class="footer-note">IRC §301·§312·§316 | Rev. Proc. 2022-43 (2023 QI Agreement) | 한미조세협약(1976/1979) | Form 8937·1042-S·1040-NR</div>
+  <div class="footer-note">개인 세무대응 활용 수준 — 실제 세무 처리는 공인 세무사(CPA·세무사) 자문 병행 권장</div>
+</footer>
+
+</body>
+</html>
