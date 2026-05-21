@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230e2555'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='14' fill='white'>ROC</text></svg>">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROC 관련 미국 제도·기관·한미조세협약 학술 보고서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1814;
+    --ink2: #3d3830;
+    --ink3: #6b6358;
+    --paper: #f7f4ef;
+    --paper2: #efe9df;
+    --paper3: #e5ddd0;
+    --accent: #8b4513;
+    --accent2: #c47b3a;
+    --accent3: #2c5f6e;
+    --gold: #b8860b;
+    --rule: rgba(139,69,19,0.18);
+    --serif: 'Noto Serif KR', 'Georgia', serif;
+    --sans: 'Noto Sans KR', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--serif);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.85;
+    font-size: 16px;
+    min-height: 100vh;
+  }
+
+  /* 배경 텍스처 */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 27px, rgba(139,69,19,0.04) 27px, rgba(139,69,19,0.04) 28px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* 헤더 */
+  .masthead {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent2), var(--gold), var(--accent));
+  }
+  .masthead-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 56px 40px 48px;
+    position: relative;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .kicker::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--accent2);
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(26px, 4vw, 42px);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: #f0ebe2;
+    margin-bottom: 20px;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent2);
+  }
+  .byline {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: rgba(240,235,226,0.5);
+    letter-spacing: 0.08em;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .byline span { display: flex; align-items: center; gap: 6px; }
+
+  /* 목차 */
+  .toc-bar {
+    background: var(--ink2);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .toc-scroll {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .toc-scroll::-webkit-scrollbar { display: none; }
+  .toc-scroll a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: rgba(240,235,226,0.55);
+    text-decoration: none;
+    padding: 13px 18px;
+    white-space: nowrap;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    transition: color 0.2s, background 0.2s;
+  }
+  .toc-scroll a:hover { color: var(--accent2); background: rgba(255,255,255,0.04); }
+
+  /* 본문 */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* 섹션 */
+  section {
+    margin-top: 64px;
+    padding-top: 8px;
+    border-top: 1px solid var(--rule);
+    animation: fadeUp 0.6s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  section:nth-child(1) { animation-delay: 0.05s; }
+  section:nth-child(2) { animation-delay: 0.12s; }
+  section:nth-child(3) { animation-delay: 0.19s; }
+  section:nth-child(4) { animation-delay: 0.26s; }
+  section:nth-child(5) { animation-delay: 0.33s; }
+  section:nth-child(6) { animation-delay: 0.40s; }
+  section:nth-child(7) { animation-delay: 0.47s; }
+  section:nth-child(8) { animation-delay: 0.54s; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 12px;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 28px;
+    padding-left: 16px;
+    border-left: 3px solid var(--accent);
+  }
+
+  h3 {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent3);
+    letter-spacing: 0.04em;
+    margin: 36px 0 12px;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-size: 15.5px;
+    color: var(--ink2);
+    margin-bottom: 18px;
+    text-align: justify;
+    word-break: keep-all;
+  }
+
+  /* 인용 블록 */
+  blockquote {
+    margin: 28px 0;
+    padding: 20px 28px;
+    background: var(--paper2);
+    border-left: 4px solid var(--accent2);
+    border-radius: 0 6px 6px 0;
+    font-style: italic;
+    color: var(--ink3);
+    font-size: 14.5px;
+    line-height: 1.8;
+    position: relative;
+  }
+  blockquote::before {
+    content: '"';
+    font-family: var(--serif);
+    font-size: 64px;
+    color: var(--paper3);
+    position: absolute;
+    top: -8px; left: 12px;
+    line-height: 1;
+    font-style: normal;
+  }
+
+  /* 테이블 */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 28px 0;
+    border-radius: 8px;
+    border: 1px solid var(--paper3);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--sans);
+    font-size: 14px;
+  }
+  thead {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  thead th {
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    font-size: 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  tbody tr { border-bottom: 1px solid var(--paper3); }
+  tbody tr:last-child { border: none; }
+  tbody tr:nth-child(even) { background: var(--paper2); }
+  tbody td {
+    padding: 11px 16px;
+    color: var(--ink2);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  tbody td:first-child { font-family: var(--mono); font-size: 13px; color: var(--accent); font-weight: 400; }
+
+  /* 카드 그리드 */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .card {
+    background: var(--paper2);
+    border: 1px solid var(--paper3);
+    border-radius: 10px;
+    padding: 22px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,24,20,0.10); }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .card.blue::before  { background: var(--accent3); }
+  .card.brown::before { background: var(--accent); }
+  .card.gold::before  { background: var(--gold); }
+  .card.green::before { background: #3a7d5c; }
+  .card-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    padding: 3px 8px;
+    display: inline-block;
+    border-radius: 3px;
+  }
+  .card.blue  .card-tag { background: rgba(44,95,110,0.12); color: var(--accent3); }
+  .card.brown .card-tag { background: rgba(139,69,19,0.12); color: var(--accent); }
+  .card.gold  .card-tag { background: rgba(184,134,11,0.12); color: var(--gold); }
+  .card.green .card-tag { background: rgba(58,125,92,0.12); color: #3a7d5c; }
+  .card h4 {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .card p { font-size: 13.5px; margin: 0; }
+
+  /* 연혁 타임라인 */
+  .timeline {
+    margin: 28px 0;
+    position: relative;
+    padding-left: 32px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px; top: 8px; bottom: 8px;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+  .tl-item {
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -28px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--paper);
+    box-shadow: 0 0 0 1px var(--accent);
+  }
+  .tl-year {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--accent2);
+    margin-bottom: 4px;
+  }
+  .tl-title {
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 5px;
+  }
+  .tl-desc {
+    font-size: 14px;
+    color: var(--ink3);
+    line-height: 1.65;
+  }
+
+  /* 키 메트릭 */
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin: 28px 0;
+  }
+  .metric {
+    text-align: center;
+    padding: 20px 12px;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 8px;
+  }
+  .metric-val {
+    font-family: var(--mono);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--accent2);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .metric-lbl {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(240,235,226,0.55);
+    line-height: 1.4;
+  }
+
+  /* 법령 박스 */
+  .statute-box {
+    background: var(--paper2);
+    border: 1px solid var(--paper3);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 20px 0;
+    font-family: var(--mono);
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--ink2);
+  }
+  .statute-box .ref { color: var(--accent); font-weight: 400; }
+  .statute-box .desc { color: var(--ink3); font-style: italic; }
+
+  /* 결론 박스 */
+  .conclusion {
+    background: var(--ink);
+    color: var(--paper2);
+    border-radius: 12px;
+    padding: 40px;
+    margin-top: 40px;
+  }
+  .conclusion h2 {
+    color: var(--accent2);
+    border-color: var(--accent2);
+    margin-bottom: 20px;
+  }
+  .conclusion p { color: rgba(240,235,226,0.82); font-size: 15px; }
+
+  /* 푸터 */
+  footer {
+    border-top: 1px solid var(--rule);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-brand {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--ink3);
+    text-transform: uppercase;
+  }
+  .footer-note {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink3);
+  }
+
+  /* 프린트 */
+  @media print {
+    .toc-bar { display: none; }
+    section { animation: none; }
+    body::before { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    main { padding: 0 20px 60px; }
+    .masthead-inner { padding: 36px 20px 32px; }
+    footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; }
+    .card-grid { grid-template-columns: 1fr; }
+    .metrics { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="kicker">학술 조사 보고서 — Tax Law &amp; Institutional Framework</div>
+    <h1>ROC 관련 미국 제도·기관·<em>한미조세협약</em><br>종합 학술 조사</h1>
+    <div class="byline">
+      <span>Return of Capital (ROC)</span>
+      <span>IRS · TAS · ICI · 재무부</span>
+      <span>한미조세협약 1976/1979</span>
+      <span>IRC §301 · §857 · §852</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc-bar" aria-label="목차">
+  <div class="toc-scroll">
+    <a href="#sec1">1. ROC 개념</a>
+    <a href="#sec2">2. 입법사</a>
+    <a href="#sec3">3. IRS 체계</a>
+    <a href="#sec4">4. TAS</a>
+    <a href="#sec5">5. ICI</a>
+    <a href="#sec6">6. 재무부</a>
+    <a href="#sec7">7. 한미조세협약</a>
+    <a href="#sec8">8. 권위자·문헌</a>
+    <a href="#sec9">9. 결론</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- 섹션 1 -->
+<section id="sec1">
+  <div class="section-label">Section 01</div>
+  <h2>ROC의 개념과 법적 정의</h2>
+
+  <p>
+    <strong>Return of Capital(ROC, 자본 반환)</strong>은 투자자가 받는 분배금 중 이익이나 수익이 아니라 최초 투자 원금의 일부를 돌려받는 것으로, 수령 연도에는 과세 소득으로 처리되지 않습니다. 대신 투자자의 <em>cost basis</em>(취득 원가)를 감소시키는 방식으로 과세를 이연합니다.
+  </p>
+
+  <blockquote>
+    ROC는 투자 원금의 상환을 의미하므로 과세 소득에 영향을 주지 않으며, 대신 투자자의 cost basis를 낮추는 방식으로 과세가 이연됩니다. 취득 원가가 0이 된 이후 발생하는 추가 ROC는 자본이득으로 과세됩니다.
+  </blockquote>
+
+  <h3>ROC의 두 가지 성격</h3>
+
+  <div class="card-grid">
+    <div class="card blue">
+      <div class="card-tag">Constructive ROC</div>
+      <h4>건설적 ROC</h4>
+      <p>펀드의 총수익(total return)에 기반하여 지급되는 자본 반환. 실질 운용 수익으로 뒷받침되어 NAV 유지와 함께 세제 혜택을 제공. 폐쇄형 펀드·REIT·MLP에서 활용.</p>
+    </div>
+    <div class="card brown">
+      <div class="card-tag">Destructive ROC</div>
+      <h4>파괴적 ROC</h4>
+      <p>분배 가능 금액 과대 추정 또는 시장 급락 시 발생. NAV 하락과 동반되어 장기적으로 투자자 원금을 잠식. 신중한 식별이 필요한 위험 유형.</p>
+    </div>
+    <div class="card gold">
+      <div class="card-tag">REIT / MLP</div>
+      <h4>구조적 ROC</h4>
+      <p>부동산 감가상각(비현금 비용)이 과세소득을 초과하는 현금흐름을 창출할 때 발생. REITs 및 MLP에서 구조적으로 빈번하게 나타나는 유형.</p>
+    </div>
+    <div class="card green">
+      <div class="card-tag">Basis Adjustment</div>
+      <h4>취득 원가 조정</h4>
+      <p>ROC 수령 시마다 취득 원가가 감소하며, 원가가 0이 되면 이후 ROC는 즉시 자본이득으로 인식. 세금이 이연될 뿐 소멸하지 않음에 유의.</p>
+    </div>
+  </div>
+
+  <h3>핵심 IRC 조문</h3>
+  <div class="statute-box">
+    <div><span class="ref">IRC §301</span> &nbsp; <span class="desc">법인의 재산 분배 세무 처리 — 배당·ROC·자본이득 구분 기준</span></div>
+    <div><span class="ref">IRC §316</span> &nbsp; <span class="desc">배당의 정의 — 이익잉여금(E&amp;P) 범위 내 분배</span></div>
+    <div><span class="ref">IRC §1001</span> &nbsp; <span class="desc">취득 원가 계산 및 자본이득 인식 규정</span></div>
+    <div><span class="ref">IRC §852</span> &nbsp; <span class="desc">뮤추얼펀드(RIC) 분배 조건 — 패스스루 과세 적격 요건</span></div>
+    <div><span class="ref">IRC §857</span> &nbsp; <span class="desc">REITs 분배 조건 — 과세소득의 90% 이상 분배 의무</span></div>
+  </div>
+</section>
+
+<!-- 섹션 2 -->
+<section id="sec2">
+  <div class="section-label">Section 02</div>
+  <h2>미국 세제 역사 속 ROC의 제도적 발전</h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-year">1913</div>
+      <div class="tl-title">수정헌법 제16조 · 소득세 도입</div>
+      <div class="tl-desc">연방 소득세 합헌화. "소득(income)"의 정의가 자본과 수익의 구분 필요성을 촉발시키며 ROC 개념의 씨앗이 됨.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1936</div>
+      <div class="tl-title">Revenue Act of 1936 — 미분배 이익세 도입</div>
+      <div class="tl-desc">법인 미분배 이익에 대해 최고 27%의 누진세 부과. 기업들이 배당을 늘리도록 유도하면서 배당 vs. 자본 반환 구분의 실무적 필요성 증대.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1940</div>
+      <div class="tl-title">Investment Company Act of 1940 · SEC 규제 체계 확립</div>
+      <div class="tl-desc">뮤추얼펀드에 대한 SEC 규제 틀 정립. 투자회사의 분배 방식(배당·ROC·자본이득)에 대한 공시 의무 근거 마련.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1942</div>
+      <div class="tl-title">Revenue Act of 1942 — 뮤추얼펀드 특별 세제 창설</div>
+      <div class="tl-desc">적격 분배 조건 충족 시 법인세 면제 제도(RIC 과세체계) 도입. ICI의 로비가 이 특별 세제 창설에 핵심 역할.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1954</div>
+      <div class="tl-title">Internal Revenue Code 제정 — IRC §301 성문화</div>
+      <div class="tl-desc">현대 IRC의 기틀 확립. §301을 통해 재산 분배의 배당·ROC·자본이득 처리 기준을 통합 규정. 이후 1962·1964·1966·1976 등 수차례 개정.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1960</div>
+      <div class="tl-title">REIT Act of 1960 — REITs 제도화</div>
+      <div class="tl-desc">부동산 투자신탁(REIT) 제도 도입. 부동산 감가상각 기반 구조적 ROC 발생의 제도적 토대 마련.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1976</div>
+      <div class="tl-title">한미소득세협약 서명 (서울, 6월 4일)</div>
+      <div class="tl-desc">이중과세 방지·원천징수 한도·자본이득 면제 규정 합의. 1979년 10월 20일 발효, 1980년 1월 1일부터 일반적 효력 발생.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">1986</div>
+      <div class="tl-title">Tax Reform Act of 1986 — 세제 전면 개혁</div>
+      <div class="tl-desc">소극적 손실(passive loss) 규정 강화, 감가상각 방식 변경. REITs의 ROC 분배 구조에 큰 영향. 세율 단순화로 소득·자본이득 구분 중요성 증대.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-year">2003</div>
+      <div class="tl-title">JGTRRA — 적격 배당소득 자본이득세율 적용</div>
+      <div class="tl-desc">적격 배당소득에 15% 자본이득세율 적용. ROC·배당·자본이득 세무 처리의 전략적 중요성이 더욱 커짐.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 섹션 3 -->
+<section id="sec3">
+  <div class="section-label">Section 03</div>
+  <h2>IRS와 ROC 행정 집행 체계</h2>
+
+  <p>
+    <strong>Internal Revenue Service(IRS)</strong>는 재무부 산하 기관으로 IRC §301 기반의 분배 소득 처리, 1099-DIV 신고 체계, cost basis 조정 행정을 담당합니다.
+  </p>
+
+  <h3>IRS의 ROC 관련 주요 행정 기능</h3>
+
+  <div class="card-grid">
+    <div class="card blue">
+      <div class="card-tag">Revenue Ruling</div>
+      <h4>행정 해석 발행</h4>
+      <p>IRS는 REIT·뮤추얼펀드·폐쇄형 펀드의 분배 성격 결정(배당 vs. ROC)에 관한 Revenue Ruling·Private Letter Ruling을 지속적으로 발행하여 납세자 지침 제공.</p>
+    </div>
+    <div class="card brown">
+      <div class="card-tag">Form 1099-DIV</div>
+      <h4>신고 의무 집행</h4>
+      <p>ROC 분배를 지급하는 펀드·REIT는 Box 3에 ROC 금액을 기재한 1099-DIV를 투자자에게 발행해야 하며, IRS는 이를 통한 신고 일치 여부를 검증.</p>
+    </div>
+    <div class="card gold">
+      <div class="card-tag">Chief Counsel</div>
+      <h4>법률 해석 권위</h4>
+      <p>IRS Office of Chief Counsel은 IRC §301·§316·§852·§857에 대한 공식 법률 의견을 제공하는 내부 최고 권위 기관. TAS 사건에서도 TAS 법률 자문역이 Chief Counsel에 해석 의뢰.</p>
+    </div>
+  </div>
+
+  <h3>IRB(Internal Revenue Bulletin) 주요 지침</h3>
+  <p>IRS는 Internal Revenue Bulletin을 통해 ROC 관련 세무 처리 지침을 발행합니다. 주요 사례로는 REIT의 Spillover 분배 처리, 현금·주식 혼합 분배의 §301 적용, 법인 분리(spin-off) 시 워런트 ROC 처리 등이 있습니다.</p>
+</section>
+
+<!-- 섹션 4 -->
+<section id="sec4">
+  <div class="section-label">Section 04</div>
+  <h2>TAS — 납세자 보호 서비스</h2>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-val">1979</div>
+      <div class="metric-lbl">납세자 옴부즈맨실<br>설립 연도</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">1996</div>
+      <div class="metric-lbl">현재 TAS 체제로<br>개편 (TBOR 2)</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">1998</div>
+      <div class="metric-lbl">RRA 98 — 각 주<br>독립 LTA 설치</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">IRC<br>§7803</div>
+      <div class="metric-lbl">TAS 설립<br>법적 근거</div>
+    </div>
+  </div>
+
+  <h3>설립과 발전 역사</h3>
+  <p>
+    1979년 IRS는 납세자 옴부즈맨실(Office of the Taxpayer Ombudsman)을 설치하고, 1988년 납세자 권리장전 1(TBOR 1)을 통해 IRC §7811을 신설하여 납세자 지원 명령(Taxpayer Assistance Order, TAO) 발령 권한을 부여하였습니다. 1996년 TBOR 2는 옴부즈맨실을 납세자 보호관실(Office of the Taxpayer Advocate)로 격상시켰으며, 1998년 IRS 구조개혁법(RRA 98)이 현재의 TAS 체제를 완성하였습니다.
+  </p>
+
+  <h3>독립성과 권한</h3>
+  <p>
+    국가 납세자 보호관(National Taxpayer Advocate, NTA)은 재무장관이 임명하며, IRS 청장과 의회 양쪽에 독립적으로 보고합니다. TAS의 연간 보고서(Annual Report to Congress)는 IRS 청장·재무부·OMB의 사전 검토 없이 의회에 직접 제출됩니다. 이 구조는 TAS의 실질적 독립성을 제도적으로 보장합니다.
+  </p>
+
+  <h3>TAS 사건 수임 기준 (9가지)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>기준</th><th>내용</th><th>법적 근거</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>기준 1</td><td>경제적 피해 발생 또는 임박</td><td>IRC §7811(a)(1)(B)</td></tr>
+        <tr><td>기준 2</td><td>즉각적 불리한 처분 위협</td><td>IRC §7811(a)(2)(A)</td></tr>
+        <tr><td>기준 3</td><td>중대한 비용(전문가 보수 등) 발생</td><td>IRC §7811(a)(2)(C)</td></tr>
+        <tr><td>기준 4</td><td>회복 불가능한 피해 또는 장기 불이익</td><td>IRC §7811(a)(2)(D)</td></tr>
+        <tr><td>기준 5</td><td>IRS가 30일 이상 지연 처리</td><td>Treas. Reg. 301.7811-1</td></tr>
+        <tr><td>기준 6</td><td>기한 내 해결 미보장</td><td>IRC §7803(c)</td></tr>
+        <tr><td>기준 7</td><td>IRS 시스템·절차 오작동</td><td>IRC §7803(c)</td></tr>
+        <tr><td>기준 8</td><td>세법 적용 방식의 형평성 문제</td><td>IRC §7811(a)(1)(B)</td></tr>
+        <tr><td>기준 9</td><td>NTA가 공익상 중요하다고 판단</td><td>IRC §7803(c)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>
+    ROC 관련 분쟁에서 TAS는 IRS의 cost basis 처리 오류, 1099-DIV 신고 불일치로 인한 잘못된 과세, 시스템 오류에 의한 취득 원가 미반영 등의 사안에서 납세자를 지원합니다.
+  </p>
+</section>
+
+<!-- 섹션 5 -->
+<section id="sec5">
+  <div class="section-label">Section 05</div>
+  <h2>ICI — 투자회사협회</h2>
+
+  <p>
+    <strong>Investment Company Institute(ICI)</strong>는 뮤추얼펀드·ETF·폐쇄형 펀드·UIT(단위투자신탁) 업계를 대표하는 워싱턴 D.C. 소재 협회로, ROC 관련 세제 정책 형성에 가장 큰 영향력을 행사해온 민간 기관입니다.
+  </p>
+
+  <h3>설립과 역사</h3>
+  <p>
+    1940년 투자회사법(Investment Company Act of 1940) 제정 직후, SEC는 복잡한 동법을 집행하는 과정에서 업계와 지속적인 소통 창구를 원하였고, 이에 따라 1940년 10월 1일 뮤추얼펀드와 폐쇄형 펀드로 구성된 <strong>전미투자회사협회(NAIC)</strong>가 창설되었습니다. 1961년 투자 자문사와 인수업자로 회원 범위가 확장되면서 명칭이 <strong>Investment Company Institute(ICI)</strong>로 변경되었습니다. 2011년 ICI Global(런던), 2013년 홍콩, 2020년 브뤼셀로 글로벌 확장을 이루었습니다.
+  </p>
+
+  <h3>ROC 정책에서의 역할</h3>
+  <div class="card-grid">
+    <div class="card blue">
+      <div class="card-tag">입법 로비</div>
+      <h4>특별 세제 유지·개선</h4>
+      <p>1936년·1942년 세입법이 창설한 뮤추얼펀드 특별 세제(패스스루 법인세 면제)를 현대적 조건에 맞게 개정하는 입법을 주도. 1976년 면세 지방채 펀드 허용 입법 성사.</p>
+    </div>
+    <div class="card brown">
+      <div class="card-tag">IRS·재무부 협의</div>
+      <h4>세무 해석 참여</h4>
+      <p>ICI 스태프는 IRS·재무부와 정기적으로 협력하여 펀드 및 주주 과세 관련 문제를 논의. ROC 공시 기준, 1099-DIV 보고 형식 등에 대한 업계 의견 제출.</p>
+    </div>
+    <div class="card gold">
+      <div class="card-tag">연구·데이터</div>
+      <h4>업계 기준 설정</h4>
+      <p>뮤추얼펀드·ETF의 ROC 분배 관행에 관한 공식 연구 보고서 발간. "건설적 ROC"와 "파괴적 ROC" 구분 등 업계 표준 용어 및 분석 틀 정립에 기여.</p>
+    </div>
+  </div>
+
+  <h3>ICI와 SEC의 협력 관계</h3>
+  <p>
+    ICI와 SEC는 1940년 이후 규제의 양 축으로 협력해왔습니다. SEC는 뮤추얼펀드의 유동성 규칙(총 포트폴리오의 15% 이하를 비유동 자산으로 제한), 분배 공시, 이사회 독립성 기준 등을 집행하며, ICI는 업계 의견을 취합하여 규제 형성 과정에 참여합니다.
+  </p>
+</section>
+
+<!-- 섹션 6 -->
+<section id="sec6">
+  <div class="section-label">Section 06</div>
+  <h2>재무부의 역할과 ROC 규정 체계</h2>
+
+  <p>
+    <strong>U.S. Department of the Treasury</strong>는 미국 세제의 최상위 권위 기관으로, 재무부 규정(Treasury Regulations)을 통해 IRC 각 조문에 대한 세부 해석·집행 기준을 제공합니다. ROC와 관련하여 재무부 Office of Tax Policy가 핵심 정책 역할을 담당합니다.
+  </p>
+
+  <h3>재무부 규정 체계</h3>
+  <p>
+    재무부 규정은 연방 관보(Federal Register) 게재를 통해 공표되며, CFR Title 26에 편입됩니다. 학술 인용 형식은 <code>Treas. Reg. §1.301-1(b)</code>와 같습니다. ROC 관련 핵심 재무부 규정으로는 Treas. Reg. §1.301-1(이익잉여금 초과 분배의 자본 반환 처리), §1.316-1(이익잉여금 정의), §1.852-4(RIC 분배 요건) 등이 있습니다.
+  </p>
+
+  <h3>재무부·IRS·TAS의 권한 위계</h3>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>기관</th><th>역할</th><th>ROC 관련 기능</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Treasury / Office of Tax Policy</td><td>세법 정책 및 조세협약 총괄</td><td>Treas. Reg. 초안, 협약 협상</td></tr>
+        <tr><td>IRS Office of Chief Counsel</td><td>IRC 공식 법적 해석</td><td>Revenue Ruling, PLR 발행</td></tr>
+        <tr><td>IRS (집행부서)</td><td>세법 집행, 신고 검증</td><td>1099-DIV 매칭, 감사</td></tr>
+        <tr><td>TAS (National Taxpayer Advocate)</td><td>납세자 독립 옹호, 의회 보고</td><td>ROC 처리 오류 구제, 정책 비판</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 섹션 7 -->
+<section id="sec7">
+  <div class="section-label">Section 07</div>
+  <h2>한미조세협약과 ROC</h2>
+
+  <h3>조약 개요 및 체결 경위</h3>
+  <p>
+    미국-한국 소득세 조약의 공식 명칭은 <em>"소득에 관한 조세의 이중과세 회피 및 탈세 방지와 국제 무역·투자 장려를 위한 대한민국과 미합중국 간의 협약"</em>입니다. 1976년 6월 4일 서울에서 서명되었고, 상원 외교위원회가 1977년 7월·1979년 6월 청문회를 개최한 후 1979년 7월 9일 상원 비준 동의, 1979년 9월 20일 비준서 교환, 1979년 10월 20일 발효(일반 효력 발생일 1980년 1월 1일)되었습니다.
+  </p>
+
+  <div class="metrics">
+    <div class="metric">
+      <div class="metric-val">15%</div>
+      <div class="metric-lbl">포트폴리오 배당<br>원천징수 한도</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">10%</div>
+      <div class="metric-lbl">모회사(≥10% 지분)<br>배당 원천징수 한도</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">12%</div>
+      <div class="metric-lbl">이자 원천징수<br>최대 한도</div>
+    </div>
+    <div class="metric">
+      <div class="metric-val">0%</div>
+      <div class="metric-lbl">일반 자본이득<br>면제(조건부)</div>
+    </div>
+  </div>
+
+  <h3>ROC 관련 주요 조문 분석</h3>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>조문</th><th>소득 유형</th><th>처리 기준</th><th>ROC 연관성</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Article 12</td><td>배당 (Dividends)</td><td>개인 15%, 법인(≥10%) 10% 원천징수 한도</td><td>ROC는 E&amp;P 초과분으로 배당 아님 → 원천징수 미적용</td></tr>
+        <tr><td>Article 13</td><td>이자 (Interest)</td><td>최대 12% 원천징수, 정부 기관 면제</td><td>채권 분배의 ROC 성분 구분 필요</td></tr>
+        <tr><td>Article 14</td><td>사용료 (Royalties)</td><td>일반 15%, 저작권·영화 10%</td><td>직접 관련 낮음</td></tr>
+        <tr><td>Article 16</td><td>자본이득 (Capital Gains)</td><td>거주지국 과세 원칙, 부동산·PE 예외</td><td>ROC로 cost basis 감소 후 매도 시 양도차익 증가</td></tr>
+        <tr><td>Article 23</td><td>이중과세 방지</td><td>세액공제(Foreign Tax Credit) 방식</td><td>ROC 및 관련 이득의 이중 과세 방지 메커니즘</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>ROC의 협약 내 처리 원칙</h3>
+  <p>
+    한미조세협약상 ROC는 배당·이자·자본이득과 구별됩니다. 이익잉여금(E&amp;P)을 초과하는 분배분은 미국 IRC §301 기준에 따라 자본 반환으로 처리되어 원천징수 의무가 발생하지 않는 것이 일반적입니다. 이후 매도 시점에 cost basis 감소로 인한 증가된 자본이득에 대해서는 Article 16의 면제 조항(거주지국 과세 원칙) 적용 여부를 검토해야 합니다.
+  </p>
+
+  <blockquote>
+    한국은 미국에서 납부한 소득세에 대해 적절한 세액공제를 허용하며, 10% 이상 의결권을 보유한 한국 법인이 수취하는 배당의 경우 해당 배당의 원천이 되는 이익에 대해 미국에서 납부한 세금에도 추가 세액공제를 허용한다. — 한미조세협약 기술적 해설(Technical Explanation), 재무부·상원 외교위원회 제출본(1979)
+  </blockquote>
+
+  <h3>한국의 현행 원천징수 체계 (2026년 기준)</h3>
+  <p>
+    한국은 비거주자·외국 법인에게 지급하는 배당·이자에 대해 기본 14% 원천징수율을 적용하며, 지방소득세 10% 추가 부담으로 실효세율은 15.4%입니다. 한미조세협약 적용 시 협약세율(배당 10%/15%, 이자 12%)이 우선 적용되며, 2023년부터 적격 해외 금융기관에 대한 국채 이자·자본이득 면제 제도가 신설되었습니다.
+  </p>
+</section>
+
+<!-- 섹션 8 -->
+<section id="sec8">
+  <div class="section-label">Section 08</div>
+  <h2>주요 학술 권위자 및 참고 문헌</h2>
+
+  <h3>분야별 권위자</h3>
+  <div class="card-grid">
+    <div class="card blue">
+      <div class="card-tag">기업 세무법</div>
+      <h4>Jasper L. Cummings Jr.</h4>
+      <p>IRC §385(자본 vs. 부채 분류), 법인 분배 과세 분야 Tax Notes 수석 기고자. Subchapter C(법인 과세) 및 분배 규정의 학술적 권위자.</p>
+    </div>
+    <div class="card brown">
+      <div class="card-tag">실무 분석</div>
+      <h4>Robert Willens</h4>
+      <p>Thomson Reuters ROC 분배, Xerox 워런트 분배 등 실제 기업 사례를 분석하는 Tax Notes 고정 기고자. ROC의 비거주자 세무 처리 전문.</p>
+    </div>
+    <div class="card gold">
+      <div class="card-tag">납세자 권리</div>
+      <h4>Nina E. Olson</h4>
+      <p>2001~2019 국가 납세자 보호관(NTA). 납세자 권리장전(TBOR) 10개 조항 확립을 주도. IRS 행정 관행 비판의 학술적·실무적 권위자.</p>
+    </div>
+    <div class="card green">
+      <div class="card-tag">조세협약</div>
+      <h4>재무부 Office of Tax Policy</h4>
+      <p>한미조세협약 기술적 해설(Technical Explanation) 공식 작성 기관. 협약 해석의 1차 권위 자료. 상원 외교위원회 청문회 제출본(1979) 활용.</p>
+    </div>
+  </div>
+
+  <h3>핵심 1차 자료</h3>
+  <div class="statute-box">
+    <div><span class="ref">IRS Pub. irs-trty/korea.pdf</span> &nbsp; <span class="desc">한미조세협약 원문 (IRS 공식 게재)</span></div>
+    <div><span class="ref">IRS Pub. irs-trty/koreatech.pdf</span> &nbsp; <span class="desc">한미조세협약 기술적 해설 (재무부·상원 제출본)</span></div>
+    <div><span class="ref">IRS IRB — Rev. Rul. 시리즈</span> &nbsp; <span class="desc">REIT·RIC ROC 분배 처리 관련 Revenue Rulings</span></div>
+    <div><span class="ref">TAS Annual Report to Congress</span> &nbsp; <span class="desc">납세자 관점 세무 행정 분석 (연간 발간)</span></div>
+    <div><span class="ref">ICI Research Reports</span> &nbsp; <span class="desc">뮤추얼펀드·ETF ROC 관행 및 세제 분석 (ici.org)</span></div>
+    <div><span class="ref">Bloomberg Tax — IRC §301, §852, §857</span> &nbsp; <span class="desc">Full-text IRC with Editor's Notes (실시간 업데이트)</span></div>
+    <div><span class="ref">PWC Tax Summaries — Korea</span> &nbsp; <span class="desc">한국 현행 원천징수 세율표 (연 2회 업데이트)</span></div>
+  </div>
+</section>
+
+<!-- 섹션 9 — 결론 -->
+<section id="sec9">
+  <div class="conclusion">
+    <div class="section-label" style="color:var(--accent2)">Section 09</div>
+    <h2>결론 및 제도적 함의</h2>
+
+    <p>
+      ROC는 미국 세법의 "소득 vs. 자본" 이분법에 기반한 개념으로, 1913년 연방 소득세 도입을 기원으로 1936년·1942년 세입법에서 실무적 중요성이 확인되었고, 1954년 IRC §301 체계화, 2003년 세제 개편을 거쳐 현재의 틀을 갖추었습니다.
+    </p>
+    <p>
+      <strong style="color:var(--accent2)">재무부</strong>가 규정과 조세협약의 최상위 권위 기관이며, <strong style="color:var(--accent2)">IRS</strong>는 IRC §301 중심의 집행 행정을, <strong style="color:var(--accent2)">TAS</strong>는 납세자 권리 보호의 독립적 안전망을, <strong style="color:var(--accent2)">ICI</strong>는 투자업계의 정책 창구 역할을 각각 담당합니다.
+    </p>
+    <p>
+      <strong style="color:var(--accent2)">한미조세협약</strong> 맥락에서 ROC는 배당·이자·자본이득과 구별되어 처리되며, 이익잉여금 초과 분배분은 원천징수 없이 cost basis 감소로 처리됩니다. 이중과세 방지를 위한 세액공제 방식이 적용되며, Article 12(배당)·16(자본이득) 조문의 적용 경계를 정밀하게 분석하는 것이 실무상 핵심 과제입니다.
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="footer-brand">ROC · 미국 제도 · 한미조세협약 학술 보고서</div>
+  <div class="footer-note">IRC §301 · §852 · §857 · 한미조세협약(1976/1979) · IRS · TAS · ICI · 재무부</div>
+</footer>
+
+</body>
+</html>
