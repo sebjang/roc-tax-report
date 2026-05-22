@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ROC Tax Report — 해외 ETF Return of Capital 과세 분석</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a1a;--ink2:#3a3a3a;--ink3:#5a5a5a;--page:#ffffff;--cream:#f4f0e8;--rule:#d0c8b8;--blue:#0e2555;--blue2:#1e4090;--red:#7a1800;--green:#0e3212;--orange:#8a3a00;--mono:'IBM Plex Mono',monospace;--sans:'Noto Sans KR',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:var(--sans);background:var(--page);color:var(--ink2);line-height:1.8;}
+.topbar{background:var(--ink);color:rgba(255,255,255,.4);font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-align:center;padding:8px;border-bottom:3px solid var(--blue2);}
+.hero{background:var(--ink);padding:60px 24px 48px;text-align:center;}
+.hero h1{font-family:var(--sans);font-size:clamp(22px,3.5vw,36px);font-weight:700;color:#fff;line-height:1.25;margin-bottom:14px;}
+.hero p{font-family:var(--mono);font-size:13px;color:rgba(255,255,255,.5);max-width:600px;margin:0 auto 28px;line-height:1.8;}
+.hero-rule{height:3px;width:60px;background:linear-gradient(90deg,var(--blue2),var(--red));margin:0 auto 28px;}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px 80px;}
+.sec{margin-top:52px;}
+.sec-lbl{font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--blue2);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--rule);}
+.sec-lbl.urgent{color:var(--red);}
+.sec-lbl.urgent::after{background:rgba(122,24,0,.3);}
+.urgent-banner{background:rgba(122,24,0,.07);border:1.5px solid rgba(122,24,0,.25);border-left:4px solid var(--red);padding:12px 18px;margin-bottom:16px;font-family:var(--mono);font-size:12px;color:var(--red);letter-spacing:.04em;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px;}
+.card{background:var(--cream);border:1.5px solid var(--rule);border-top:3px solid;padding:24px;text-decoration:none;color:inherit;display:block;transition:border-color .2s,transform .15s;}
+.card:hover{border-color:var(--blue2);transform:translateY(-2px);}
+.card.c1{border-top-color:var(--blue);}
+.card.c2{border-top-color:var(--red);}
+.card.c3{border-top-color:var(--blue2);}
+.card.c4{border-top-color:var(--green);}
+.card.cp1{border-top-color:var(--red);background:#fff5f3;}
+.card.cp2{border-top-color:var(--red);background:#fff5f3;}
+.card.cp3{border-top-color:var(--orange);background:#fff8f3;}
+.card-tag{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px;color:var(--ink3);}
+.card-tag.urgent{color:var(--red);font-weight:700;}
+.card h3{font-size:16px;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:8px;}
+.card p{font-size:13.5px;color:var(--ink3);line-height:1.65;}
+.card-arrow{font-family:var(--mono);font-size:12px;color:var(--blue2);margin-top:14px;display:block;}
+.card-arrow.dl{color:var(--red);}
+.disclaimer{background:rgba(14,37,85,.06);border:1.5px solid rgba(14,37,85,.2);border-left:4px solid var(--blue2);padding:16px 22px;margin:32px 0;font-size:14px;color:var(--blue);line-height:1.75;}
+.disclaimer strong{font-weight:700;}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:16px;}
+.meta-item{background:var(--cream);border:1px solid var(--rule);padding:16px;font-family:var(--mono);font-size:12px;color:var(--ink3);line-height:1.7;}
+.meta-item strong{display:block;color:var(--ink);margin-bottom:4px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;}
+footer{background:var(--ink);color:rgba(255,255,255,.35);font-family:var(--mono);font-size:11px;text-align:center;padding:20px;letter-spacing:.06em;line-height:1.9;border-top:3px solid var(--blue2);}
+@media(max-width:560px){.cards{grid-template-columns:1fr;}.wrap{padding:0 14px 60px;}}
+</style>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230e2555'/><text x='50%' y='56%' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-weight='bold' font-size='14' fill='white'>ROC</text></svg>">
+<meta property="og:title" content="ROC Tax Report — 해외 ETF Return of Capital 과세 공백 분석">
+<meta property="og:description" content="MSTY 2025 ROC 100% 실증 · 10년 한미 자산격차 2억475만원 · KSD 정보공개 16516499 · MAP 검토 가능성 분석">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ROC Tax Report — 해외 ETF Return of Capital 과세 공백 분석">
+<meta name="twitter:description" content="MSTY 2025 ROC 100% 실증 · 한미 세제 비대칭 · MAP 검토 가능성 · 정책 분석 프로젝트">
+</head>
+<body>
+<div class="topbar">ROC Tax Report · 연구·정책 분석 목적 · 세무·법률 자문 아님 · 2026.05.22</div>
+<header class="hero">
+<h1>해외 ETF Return of Capital<br>과세 공백 분석 프로젝트</h1>
+<p>ICI Primary Master V03 공식 데이터 기반<br>ROC 세무 처리·자산침식 효과·MAP 검토 가능성 분석</p>
+<div class="hero-rule"></div>
+<p style="font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.35);">저자: 장세봉 (Jang Sebong) · 특허 출원: 10-2026-0079638 · 10-2026-0084940 · 10-2026-0084983</p>
+</header>
+<div class="wrap">
+<div class="disclaimer">
+<strong>◈ 면책 고지</strong>: 본 프로젝트의 모든 문서는 공개 자료를 기반으로 한 <strong>정책 분석 및 연구 목적</strong>의 자료입니다. 특정 기관·증권사·과세당국의 위법행위를 단정하지 않으며, 세무·법률 자문을 대체하지 않습니다. 실제 과세 판단은 개별 사실관계 및 과세당국 해석에 따라 달라질 수 있습니다.
+</div>
+
+<!-- ★ 국민신문고 민원 참조파일 — 맨 앞 배치 -->
+<section class="sec">
+<div class="sec-lbl urgent">🚨 국민신문고 민원 참조파일 · 긴급 · 2026.05.22</div>
+<div class="urgent-banner">
+수신: 국세청 소득세과 &nbsp;|&nbsp; 참조: 기획재정부 국제조세제도과 &nbsp;|&nbsp; 근거: KSD 정보공개 16516499 / 한미조세협약 제27조
+</div>
+<div class="cards">
+<a href="roc-collective-petition-JANG_SEBONG-V01.html" class="card cp1">
+<div class="card-tag urgent">🔴 국민신문고 민원서 · HTML</div>
+<h3>국제원천징수 최종원장 정합성 붕괴 관련 한미 양국 긴급 공동 민원서</h3>
+<p>항목 1·2·2-0·3·4·5 피해 신고 / 역산 자동계산 / 요청사항 6개 / 장세봉 · 2026.05.22</p>
+<span class="card-arrow dl">→ roc-collective-petition-JANG_SEBONG-V01.html</span>
+</a>
+<a href="SAMPLE-SINMOONGO.pdf" class="card cp2">
+<div class="card-tag urgent">🔴 국민신문고 민원서 · PDF</div>
+<h3>국민신문고 민원 기안 — 국제원천징수 최종원장 정합성 붕괴 (예시 샘플)</h3>
+<p>epeople.go.kr 제출용 인쇄·첨부 참조 PDF / 5페이지 / 2026.05.22 출력본</p>
+<span class="card-arrow dl">→ SAMPLE-SINMOONGO.pdf</span>
+</a>
+<a href="roc-collective-petition-CALC-SEBONG_JANG-V01.xlsx" class="card cp3">
+<div class="card-tag urgent">🟠 자기자본과세 피해 계산기 · XLSX</div>
+<h3>ROC 과세부담 수식 내장 엑셀 — 자기자본과세 피해 계산기 V01</h3>
+<p>Inputs / Calculation / Scenario_Table / Sources 4개 시트 · A0=823,100,000원 기준 · 수식 편집 가능</p>
+<span class="card-arrow dl">→ roc-collective-petition-CALC-SEBONG_JANG-V01.xlsx</span>
+</a>
+</div>
+</section>
+
+<!-- 기존 문서 목록 -->
+<section class="sec">
+<div class="sec-lbl">연구·분석 문서 목록</div>
+<div class="cards">
+<a href="roc-paper-map1.html" class="card c1">
+<div class="card-tag">핵심 논문 · 개정판 v5</div>
+<h3>해외 ETF ROC 분배금의 국내 과세 공백과 은퇴자 자산침식 효과에 관한 수치적 분석</h3>
+<p>g=10% 기본 시나리오 · kₜ 세목 분해 · MAP 검토 가능성 · MSTY·NVDY·CONY 실제 사례</p>
+<span class="card-arrow">→ roc-paper-map1.html</span>
+</a>
+<a href="ROC-report-3.html" class="card c2">
+<div class="card-tag">세무 실전 가이드 · 최종판</div>
+<h3>ROC 세무대응 실전문서 — 3개 증권사 처리 검증 및 종합소득세 신고 수치 확정</h3>
+<p>ICI 공식 ROC 비율 · NEC Line 1 산출 · 5방향 교차검증 · 방법E 채택 · 특허 알고리즘 대응</p>
+<span class="card-arrow">→ ROC-report-3.html</span>
+</a>
+<a href="ROC-report-2.html" class="card c3">
+<div class="card-tag">QI 재분류 분석</div>
+<h3>ROC 이익·잉여금 비해당 증명 및 QI 재분류 세무대응 완전 보고서</h3>
+<p>DVCA→재분류 상태머신 · Form 1042-S · 음수항목 환급 · 불변원장 구조</p>
+<span class="card-arrow">→ ROC-report-2.html</span>
+</a>
+<a href="ROC-report-1.html" class="card c4">
+<div class="card-tag">학술 배경 보고서</div>
+<h3>ROC 미국 제도·기관·한미조세협약 학술 보고서</h3>
+<p>IRC §301(c)(2) · IRS QI 제도 · Form 1042-S 체계 · 한미조세협약 Art.12·16·27</p>
+<span class="card-arrow">→ ROC-report-1.html</span>
+</a>
+</div>
+</section>
+
+<section class="sec">
+<div class="sec-lbl">핵심 데이터 포인트</div>
+<div class="meta-grid">
+<div class="meta-item"><strong>MSTY 2025 ROC</strong>100% — ICI Primary Master V03 확정<br>미국 원천세 ≈ $0 / 한국 전액 배당과세</div>
+<div class="meta-item"><strong>CONY 2025 ROC</strong>97.0% — ICI Primary Master V03 확정<br>2024년 59%에서 급등</div>
+<div class="meta-item"><strong>3년 격차 (g=10%)</strong>약 7,065만원<br>미국 1억1,572만 / 한국 4,506만</div>
+<div class="meta-item"><strong>10년 격차 (g=10%)</strong>약 2억 475만원<br>비율 15.3:1 (선형근사 기준)</div>
+<div class="meta-item"><strong>KSD 정보공개</strong>접수번호 16516499<br>"국내 당국 관여 없음" 공식 확인</div>
+<div class="meta-item"><strong>MAP 검토 근거</strong>한미조세협약 제27조<br>IRC §301(c)(2) vs 소득세법 §17 충돌 가능성</div>
+</div>
+</section>
+
+<section class="sec">
+<div class="sec-lbl">출처 및 라이선스</div>
+<p style="font-size:14.5px;color:var(--ink3);line-height:1.85;">
+데이터: ICI Primary Master V03 · 미국 IRC Title 26 · 한미조세협약(1979) · KSD 정보공개 결정 · 소득세법·국민건강보험법<br>
+라이선스: <a href="https://creativecommons.org/licenses/by-nc/4.0/" style="color:var(--blue2)">CC BY-NC 4.0</a> — 비상업적 이용·출처 표시 조건으로 자유롭게 인용·공유 가능<br>
+관련 특허: 10-2026-0079638 · 10-2026-0084940 · 10-2026-0084983
+</p>
+</section>
+</div>
+<footer>
+ROC Tax Report · 장세봉 (Jang Sebong) · 2026.05.22<br>
+연구·정책 분석 목적 · 세무·법률 자문 아님 · CC BY-NC 4.0
+</footer>
+</body>
+</html>
