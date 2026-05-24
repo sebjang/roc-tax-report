@@ -46,7 +46,7 @@ header{background:var(--bg2);border-bottom:2px solid var(--bd);padding:11px 0;po
 .kcard .val.r{color:var(--rd)}.kcard .val.g{color:var(--gn)}.kcard .val.b{color:var(--bl)}
 .kcard .sub{font-size:11px;color:var(--di);margin-top:3px}
 /* ─ thesis ─ */
-.thesis{background:#FFF5F5;border:2px solid var(--rd);border-radius:8px;padding:15px 17px;margin-bottom:18px}
+.thesis{background:var(--bg2);border:2px solid var(--bd2);border-radius:8px;padding:15px 17px;margin-bottom:18px}
 .th-num{font-family:var(--head);font-size:36px;font-weight:700;color:var(--rd)}
 .th-title{font-size:14px;font-weight:700;color:var(--rd);margin:3px 0 6px}
 .th-desc{font-size:13px;color:var(--mu);line-height:1.8}
@@ -77,7 +77,7 @@ header{background:var(--bg2);border-bottom:2px solid var(--bd);padding:11px 0;po
 /* ─ law ─ */
 .law-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
 .law-us{background:#F0FFF0;border:2px solid var(--gn);border-radius:8px;padding:13px 15px}
-.law-kr{background:#FFF5F5;border:2px solid var(--rd);border-radius:8px;padding:13px 15px}
+.law-kr{background:var(--bg2);border:2px solid var(--bd2);border-radius:8px;padding:13px 15px}
 .law-title{font-size:13px;font-weight:700;margin-bottom:8px}
 .law-us .law-title{color:var(--gn)}.law-kr .law-title{color:var(--rd)}
 .law-body{font-size:12px;line-height:1.9;color:var(--mu)}
@@ -167,7 +167,11 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
   <div class="th-desc">ICI 2023~2025 YieldMax ETF 전수 분석 <b>1,719건</b>. 배분 지급일마다 NAV는 <b>87.14% 확률로 하락</b>했다. 잔여 12.86%(PRICE_UP)는 기초자산(TSLA·NVDA·COIN 등) 당일 상승이 분배금 크기를 초과한 경우로, 배당락 자체는 항상 발생한다. 이는 ROC 분배가 <b>이익·잉여금 배분이 아닌 원금 반환</b>임을 시장이 증명한다.</div>
 </div>
 
-<div class="kpi">
+
+<div class="note" style="margin-bottom:14px;background:var(--bg2);border-left:3px solid var(--bl)">
+  <b>R1 · 표본 구성 방법론</b><br>
+  ICI 공식 PCMNT(Primary Mutual Fund Master File) 2023~2025년분 YieldMax ETF 전수를 대상으로, 각 배분락일(Ex-Dividend Date) 기준 배당락 前日·翌日 NAV를 연결하였다. 역병합(Reverse Split) 발생 15종(TSLY 포함 2차)에 대해 발효일별 누적 배수(×2~×10)로 주가 역산 조정을 실시하였으며, 방향 판정(NAV_DOWN / PRICE_UP)은 na − nb의 부호로 결정하였다. 총 1,719건 전수 포함, 결측치(chg=None) 제외 처리.
+</div><div class="kpi">
   <div class="kcard"><div class="lbl">분석 건수</div><div class="val b">1,719건</div><div class="sub">2023~2025 · 60+ ETF</div></div>
   <div class="kcard"><div class="lbl">NAV 하락 확인</div><div class="val r">1,498건</div><div class="sub">전체의 87.14%</div></div>
   <div class="kcard"><div class="lbl">ROC=100% NAV↓율</div><div class="val r">89.8%</div><div class="sub">256건 중 230건</div></div>
@@ -184,6 +188,15 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
   <div class="sect-body">
     <div class="bins-grid" id="bins-grid"></div>
     <div class="note" style="margin-top:10px"><b>단조 증가:</b> ROC=0%(소득 배당) 82.6% → ROC=90~100%(순수 자본반환) 92.4%. ROC가 높을수록 NAV_DOWN 비율이 높아진다.</div>
+<div class="note" style="margin-top:10px;background:#F0FFF8;border-left:3px solid var(--gn);font-family:var(--mono)">
+  <b style="color:var(--gn)">R3 · PRICE_UP 수학적 설명</b><br>
+  <span style="font-size:13px">관측 주가 변화 = &#8722;분배금 + &Delta;(기초자산)</span><br>
+  <span style="font-size:12px;color:var(--mu)">
+  &nbsp;&nbsp;NAV_DOWN (87.14%): &Delta;(기초자산) &lt; 분배금 &rarr; 순하락<br>
+  &nbsp;&nbsp;PRICE_UP (12.86%): &Delta;(기초자산) &gt; 분배금 &rarr; 순상승<br>
+  &nbsp;&nbsp;배당락은 두 경우 모두 동일하게 발생 &#8212; PRICE_UP &ne; "배당락 없음"
+  </span>
+</div>
   </div>
 </div>
 
@@ -220,6 +233,15 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
       </div>
     </div>
     <div class="note"><b>핵심:</b> NAV_DOWN(87.14%) = Δ&lt;0 또는 |Δ|&lt;ps | <b>PRICE_UP(12.86%)</b> = 기초자산 당일 상승 &gt; ps (배당락 자체는 동일하게 발생)</div>
+<div class="note" style="margin-top:10px;background:#FFFBF0;border-left:3px solid var(--or)">
+  <b style="color:var(--or)">R4 · 총경제가치 보존 원칙</b><br>
+  <div style="font-family:var(--mono);font-size:12px;margin-top:6px;line-height:1.9">
+    <span style="color:var(--bl)">배당 前</span>&nbsp; 투자자 포트폴리오 = NAV<sub>t</sub> × 주수<br>
+    <span style="color:var(--rd)">배당 後</span>&nbsp; 포트폴리오 = (NAV<sub>t</sub> − ps) × 주수 + 현금(ps × 주수)<br>
+    <span style="color:var(--gn)">∴ 합계</span>&nbsp; NAV<sub>t</sub> × 주수 = 변화 없음 (총경제가치 보존)<br>
+    <span style="color:var(--mu);font-size:11px">→ 이익 창출이 없으므로 소득세 과세 요건 미충족 (IRC §316 E&P 기준)</span>
+  </div>
+</div>
   </div>
 </div>
 
@@ -311,14 +333,19 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
         </div>
       </div>
       <div class="law-kr">
-        <div class="law-title">한국 소득세법 §17①5호 — 오류 분류</div>
+        <div class="law-title">한국 소득세법 §17①5호 — 검토 필요 사항</div>
         <div class="law-body">
           <b>현행 분류:</b> <span class="lw-r">투자신탁 이익 → 배당소득 과세</span><br>
           <b>문제 ①:</b> <span class="lw-r">E&amp;P 없는 ROC에도 배당소득 부과</span><br>
           <b>문제 ②:</b> <span class="lw-r">종소세 + 지방세 + 건강보험료 3중</span><br>
-          <b>결과:</b> <span class="lw-r">원금 반환에 최대 45% 세율 적용</span><br>
+          <b>괴리 가능성:</b> <span class="lw-r">경제적 원본환급에 최대 45% 세율이 적용될 수 있는 구조</span><br>
           <b>시장 증거:</b> <span class="lw-r">1,719건이 ROC ≠ 이익을 증명</span>
-        </div>
+        
+<div style="margin-top:10px;background:#F0FFF0;border:1px solid var(--gn);border-radius:6px;padding:10px 13px;font-size:11px;color:var(--mu);line-height:1.8">
+  <b style="color:var(--gn)">footnote · IRC §316(a) E&P 정의 원문</b><br>
+  <span style="font-family:var(--mono);font-size:11px">"...the term 'dividend' means any distribution of property made by a corporation to its shareholders <b style="color:var(--tx)">out of its earnings and profits</b>..."</span><br>
+  <span style="font-size:10px;color:var(--di)">→ E&P(이익잉여금)이 없으면 배당 정의 자체에 해당하지 않음. YieldMax ROC는 IRS Form 1099-DIV Box3(Nondividend Distribution)으로 확정 신고됨.</span>
+</div>
       </div>
     </div>
 
@@ -337,13 +364,22 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
       </table>
     </div>
 
-    <div style="background:#FFF5F5;border:2px solid var(--rd);border-radius:7px;padding:12px 14px;font-size:12px;color:var(--mu);line-height:1.9">
-      <b style="color:var(--rd)">결론:</b> 1,719건의 시장 거래 기록은 ROC 분배가 항상 NAV를 감소시킨다는 것을 보여준다.
+    <div style="background:var(--bg2);border:2px solid var(--bd2);border-radius:7px;padding:12px 14px;font-size:12px;color:var(--mu);line-height:1.9">
+      <b style="color:var(--tx)">분석 결과:</b> 1,719건의 시장 거래 기록은 ROC 분배가 항상 NAV를 감소시킨다는 것을 보여준다.
       NAV 감소는 <b style="color:var(--tx)">이익의 지급이 아닌 원금의 반환</b>을 의미한다.
       IRC §301(c)(2)와 §316의 구분이 이를 명확히 한다.
-      한국 소득세법이 이를 "배당소득"으로 분류하는 것은 <b style="color:var(--tx)">역사적 시장 거래 기록이 부정하는 법리</b>다.
+      ROC의 경제적 실질이 현행 분류체계에 충분히 반영되는지 검토가 필요하다. <b style="color:var(--tx)">시장가격 및 NAV 조정 메커니즘은 ROC의 원본환급 성격과 정합적이며, 경제실질과 과세형식 간 괴리 가능성이 존재한다.</b>
     </div>
   </div>
+
+<div class="sect" style="margin-top:12px">
+  <div class="sect-head">R5 · 국제 비교 — 캐나다·호주의 ROC 처리</div>
+  <div class="sect-body" style="font-size:13px;color:var(--mu);line-height:1.9">
+    <b style="color:var(--tx)">캐나다 (CRA ITA §53(2)(b)):</b> Return of Capital은 자본비용(Adjusted Cost Base)에서 차감하며, 차감 시점에는 과세하지 않는다. ACB가 영(0)이 된 이후 수령분만 자본이득(Capital Gain)으로 과세하는 2단계 구조를 채택한다.<br>
+    <b style="color:var(--tx)">호주 (ITAA 1997 §104-135):</b> 분배금이 세후이익을 초과하는 경우 Capital Return으로 분류하고, 투자자 원가(Cost Base)에서 차감한다. 즉시 소득과세는 적용하지 않는다.<br>
+    <span style="font-size:12px;color:var(--di)">→ 주요 선진국은 ROC를 소득이 아닌 원가 회수로 처리하며, 이는 IRC §301(c)(2) 및 시장 NAV 조정 메커니즘과 동일한 경제실질 인식에 기반한다.</span>
+  </div>
+</div>
 </div>
 </div>
 
