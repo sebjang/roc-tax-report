@@ -151,6 +151,7 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
   <button class="nt" onclick="sw('mechanism',this)">배당락 메커니즘</button>
   <button class="nt" onclick="sw('etf',this)">ETF별 상세</button>
   <button class="nt" onclick="sw('legal',this)">법리 분석</button>
+  <button class="nt" onclick="sw('proof',this)">학술증명</button>
   <button class="nt" onclick="sw('data',this)">원시데이터</button>
   <button class="nt" onclick="sw('aitf',this)">AI T/F</button>
 </div>
@@ -383,6 +384,237 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
 </div>
 </div>
 </div>
+
+
+<!-- ══ 학술증명 ══ -->
+<div id="p-proof" class="panel">
+
+<!-- PART I 정의 -->
+<div class="sect">
+  <div class="sect-head" style="background:var(--bg3)">PART I &nbsp;—&nbsp; 정의 (Definitions)</div>
+  <div class="sect-body">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:700;color:var(--bl);margin-bottom:5px">D1 &nbsp;Return of Capital (ROC)</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.8">
+          미국 IRC §301(c)(2) 및 §316(a)에 따라, 법인의 E&amp;P(Earnings &amp; Profits, 이익잉여금)를 초과하는 분배금의 부분. 수령자의 취득원가(Adjusted Basis)를 감액하며, 과세소득에 산입되지 않는다. IRS Form 1099-DIV Box 3에 Nondividend Distribution으로 보고된다.
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:700;color:var(--bl);margin-bottom:5px">D2 &nbsp;순자산가치 (NAV, Net Asset Value)</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.8">
+          ETF의 총자산에서 총부채를 차감한 후 발행주식수로 나눈 주당 가치. 배분락일(Ex-Dividend Date)에 분배금만큼 이론적으로 감소한다. 본 분석에서 NAV는 ICI Data 배분락일별 역사적 시장 거래 기록 기준.
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:700;color:var(--or);margin-bottom:5px">D3 &nbsp;경제적 실질 (Economic Substance)</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.8">
+          경제적 실질상 원본환급이라 함은, 투자자의 총경제가치(Total Economic Value)가 분배 전후 보존되는 현상을 의미한다. 즉, 현금 수령으로 인한 경제적 순부(Net Wealth) 증가가 발생하지 않는 분배 구조를 지칭한다.
+        </div>
+      </div>
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:700;color:var(--or);margin-bottom:5px">D4 &nbsp;총경제가치 보존 조건</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.8;font-family:var(--mono)">
+          V<sub>before</sub> = NAV<sub>t</sub> × Q<br>
+          V<sub>after</sub> &nbsp;= NAV<sub>t+1</sub> × Q + Distribution × Q<br>
+          <span style="color:var(--or)">∴ V<sub>before</sub> ≈ V<sub>after</sub></span><br>
+          <span style="font-family:var(--font);font-size:11px;color:var(--di)">분배로 인한 순자산 증가 없음 → 소득 요건 미충족 가능성</span>
+        </div>
+      </div>
+    </div>
+    <div class="note" style="background:var(--bg2);border-left:3px solid var(--bl)">
+      <b>D5 &nbsp;시장조정항 (Market Adjustment):</b> &nbsp;배당락일에 기초자산(TSLA, NVDA 등) 가격 변동으로 NAV에 추가 영향을 미치는 항. 기호 Δ(Underlying). &nbsp;&nbsp;
+      <b>D6 &nbsp;방향 판정:</b> &nbsp;NAV_DOWN = NAV<sub>t+1</sub> &lt; NAV<sub>t</sub>, &nbsp;PRICE_UP = NAV<sub>t+1</sub> ≥ NAV<sub>t</sub>
+    </div>
+  </div>
+</div>
+
+<!-- PART II 명제 -->
+<div class="sect">
+  <div class="sect-head" style="background:var(--bg3)">PART II &nbsp;—&nbsp; 명제 (Propositions)</div>
+  <div class="sect-body">
+
+    <div style="background:var(--bg2);border-left:4px solid var(--rd);border-radius:0 7px 7px 0;padding:13px 16px;margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:var(--rd);margin-bottom:6px">P1 &nbsp;NAV 감소 명제</div>
+      <div style="font-family:var(--mono);font-size:13px;color:var(--tx);line-height:2">
+        NAV<sub>after</sub> = NAV<sub>before</sub> − Distribution + Market_Adjustment<br>
+        <span style="color:var(--mu);font-size:11px">조건: Market_Adjustment → 0 (기초자산 변동 없을 때)</span><br>
+        <span style="color:var(--rd)">⇒ NAV<sub>after</sub> &lt; NAV<sub>before</sub> &nbsp;&nbsp;(NAV 감소 필연)</span>
+      </div>
+      <div style="font-size:11px;color:var(--di);margin-top:5px">실증: 1,719건 중 1,498건(87.14%)에서 관측. χ²=17.95, p=1.26×10⁻³</div>
+    </div>
+
+    <div style="background:var(--bg2);border-left:4px solid var(--or);border-radius:0 7px 7px 0;padding:13px 16px;margin-bottom:10px">
+      <div style="font-size:12px;font-weight:700;color:var(--or);margin-bottom:6px">P2 &nbsp;ROC 단조증가 명제</div>
+      <div style="font-family:var(--mono);font-size:13px;color:var(--tx);line-height:2">
+        ROC% ↑ &nbsp;&nbsp;⇒ &nbsp;&nbsp;P(NAV_DOWN) ↑<br>
+        <span style="color:var(--mu);font-size:11px">로지스틱 회귀: P(NAV_DOWN) = σ(1.5578 + 0.0076 × ROC%)</span><br>
+        <span style="color:var(--or)">ROC=0%: 82.6% &nbsp;→ &nbsp;ROC=50%: 87.4% &nbsp;→ &nbsp;ROC=100%: 91.0%</span>
+      </div>
+      <div style="font-size:11px;color:var(--di);margin-top:5px">점이열 상관: r=0.0926, p=1.20×10⁻⁴ &nbsp;|&nbsp; 오즈비(ROC&gt;50% vs ≤50%): OR=1.709 [1.283, 2.276]</div>
+    </div>
+
+    <div style="background:var(--bg2);border-left:4px solid var(--gn);border-radius:0 7px 7px 0;padding:13px 16px;margin-bottom:0">
+      <div style="font-size:12px;font-weight:700;color:var(--gn);margin-bottom:6px">P3 &nbsp;경제실질 정합 명제</div>
+      <div style="font-family:var(--mono);font-size:13px;color:var(--tx);line-height:2">
+        V<sub>before</sub> ≈ V<sub>after</sub> + Cash &nbsp;&nbsp;(총경제가치 보존)<br>
+        <span style="color:var(--mu);font-size:11px">∴ 분배는 신규소득(New Income) 발생이 아닌 자산형태 전환(Asset Conversion)</span><br>
+        <span style="color:var(--gn)">⇒ 소득세 과세요건(순자산 증가) 미충족 가능성</span>
+      </div>
+      <div style="font-size:11px;color:var(--di);margin-top:5px">이벤트 스터디: NAV_DOWN 평균 3.81% 하락 vs 분배금 수령 → 순경제가치 변화 미미</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- PART III 증명 -->
+<div class="sect">
+  <div class="sect-head" style="background:var(--bg3)">PART III &nbsp;—&nbsp; 증명 자료 (Statistical Evidence)</div>
+  <div class="sect-body">
+
+    <div style="font-size:12px;font-weight:700;color:var(--mu);margin-bottom:8px">귀무가설(H₀) 설정 및 기각</div>
+    <div style="background:#FFF8F0;border:2px solid var(--or);border-radius:7px;padding:12px 14px;margin-bottom:12px;font-family:var(--mono);font-size:12px;line-height:1.9">
+      <b style="color:var(--or)">H₀:</b> ROC 비율과 NAV 감소 방향은 통계적으로 무관하다 (독립)<br>
+      <b style="color:var(--rd)">H₁:</b> ROC 비율이 높을수록 NAV_DOWN 발생 확률이 증가한다
+    </div>
+
+    <div class="tbl-wrap">
+    <table style="min-width:560px">
+      <thead><tr>
+        <th style="text-align:left">검정 방법</th>
+        <th>통계량</th><th>기각 기준</th><th>결과</th><th style="text-align:left">해석</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>카이제곱 독립성 검정</td>
+          <td class="cr">χ²=17.95</td><td class="cmu">p&lt;0.05</td>
+          <td><span class="badge br">H₀ 기각</span></td>
+          <td style="text-align:left;color:var(--mu);font-family:var(--font)">p=1.26×10⁻³ &lt; α=0.05, df=4</td>
+        </tr>
+        <tr>
+          <td>점이열 상관계수</td>
+          <td class="cr">r=0.0926</td><td class="cmu">p&lt;0.05</td>
+          <td><span class="badge br">유의</span></td>
+          <td style="text-align:left;color:var(--mu);font-family:var(--font)">p=1.20×10⁻⁴, 방향성 확인</td>
+        </tr>
+        <tr>
+          <td>오즈비 (ROC&gt;50% vs ≤50%)</td>
+          <td class="cr">OR=1.709</td><td class="cmu">CI 1 미포함</td>
+          <td><span class="badge br">H₀ 기각</span></td>
+          <td style="text-align:left;color:var(--mu);font-family:var(--font)">95% CI [1.283, 2.276]</td>
+        </tr>
+        <tr>
+          <td>효과크기 Cramér's V</td>
+          <td class="cor">V=0.1028</td><td class="cmu">V&gt;0</td>
+          <td><span class="badge bo">소~중</span></td>
+          <td style="text-align:left;color:var(--mu);font-family:var(--font)">실질적 연관성 존재</td>
+        </tr>
+        <tr>
+          <td>로지스틱 회귀 β</td>
+          <td class="cr">β=0.0076</td><td class="cmu">β&gt;0</td>
+          <td><span class="badge br">단조증가</span></td>
+          <td style="text-align:left;color:var(--mu);font-family:var(--font)">ROC% 증가 → P(NAV_DOWN) 증가</td>
+        </tr>
+        <tr>
+          <td>이벤트 스터디 (NAV_DOWN 평균)</td>
+          <td class="cr">−3.81%</td><td class="cmu">음수</td>
+          <td><span class="badge br">하락 실증</span></td>
+          <td style="text-align:left;color:var(--mu);font-family:var(--font)">PRICE_UP 평균 +1.01%와 대비</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="note" style="margin-top:10px"><b>결론:</b> H₀(ROC와 NAV 감소 무관)은 χ²·점이열 상관·오즈비 3개 방법으로 모두 기각된다. 표본 1,719건, α=0.05 기준. 단, Cramér's V=0.10은 소~중 효과크기로, ROC% 이외 요인(시장 변동성 등)이 방향 결정에 기여함을 나타낸다.</div>
+  </div>
+</div>
+
+<!-- PART IV 반례·한계 -->
+<div class="sect">
+  <div class="sect-head" style="background:var(--bg3)">PART IV &nbsp;—&nbsp; 반례 및 한계 (Counterarguments &amp; Limitations)</div>
+  <div class="sect-body">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:700;color:var(--rd);margin-bottom:5px">반론 A &nbsp;·&nbsp; "ETF 가격은 시장수급 영향"</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.8">
+          <b style="color:var(--tx)">반론:</b> 주가 변동은 수급·심리 등 외부요인에 의한 것으로, 분배금과 NAV 변화를 직접 연결할 수 없다.<br>
+          <b style="color:var(--gn)">대응:</b> 본 분석은 시장가 대신 <b>NAV(순자산가치)</b> 기준으로 분석. NAV는 시장수급이 아닌 포트폴리오 실제 자산가치를 반영하며, 분배금 지급 시 회계적으로 즉시 차감됨. 시장조정항 Δ는 모델 내 명시적으로 처리.
+        </div>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:700;color:var(--rd);margin-bottom:5px">반론 B &nbsp;·&nbsp; "ROC는 세법상 분류일 뿐"</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.8">
+          <b style="color:var(--tx)">반론:</b> ROC는 세법상 기술적 분류이며, 경제적 성격과 반드시 일치하지 않을 수 있다.<br>
+          <b style="color:var(--gn)">대응:</b> 오히려 본 논증을 강화함. IRC §316(a) E&amp;P 기준은 회계적·경제적 이익 존재 여부를 직접 반영. Box3 분류 자체가 "E&amp;P 없음 = 이익 없음"의 법적 확인이며, NAV 데이터는 이를 시장에서 독립적으로 실증.
+        </div>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:700;color:var(--rd);margin-bottom:5px">반론 C &nbsp;·&nbsp; "분배 이후 가격 상승 사례 존재"</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.8">
+          <b style="color:var(--tx)">반론:</b> PRICE_UP 사례(221건, 12.86%)는 분배와 무관하게 가격이 상승했음을 보여준다.<br>
+          <b style="color:var(--gn)">대응:</b> 모델 내부에서 설명됨. NAV<sub>after</sub> = NAV<sub>before</sub> − ps + Δ(Underlying). PRICE_UP은 Δ&gt;ps인 경우로, 배당락 자체는 동일하게 발생. 이 반례를 모델이 예측하고 포함한다는 점이 오히려 모델 유효성의 근거.
+        </div>
+      </div>
+
+      <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:12px 14px">
+        <div style="font-size:11px;font-weight:700;color:var(--rd);margin-bottom:5px">반론 D &nbsp;·&nbsp; "배당과 ROC 혼합 지급"</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.8">
+          <b style="color:var(--tx)">반론:</b> 실제 분배금은 Box1a(소득)와 Box3(ROC)가 혼합 지급되므로, 순수 ROC만의 효과를 분리할 수 없다.<br>
+          <b style="color:var(--gn)">대응:</b> 본 데이터셋은 Box1a·Box3를 개별 분리하여 ROC%=b3/ps로 산출. 혼합 구간(ROC 1~99%)에서도 ROC% 증가에 따른 NAV_DOWN 단조증가 패턴 확인(P2). 분리 분석 가능.
+        </div>
+      </div>
+
+    </div>
+
+    <div class="note" style="margin-top:12px;background:#FFF8F0;border-left:3px solid var(--or)">
+      <b>한계 (Limitations):</b> ① Cramér's V=0.10으로 효과크기가 소~중간 수준 — ROC 이외 기초자산 변동성이 방향에 더 큰 기여 가능. ② NAV는 시장가와 괴리(Premium/Discount)가 발생할 수 있음. ③ 샘플 기간(2023~2025)에 대한 일반화는 추가 연도 데이터로 검증 필요. ④ 인과관계(Causality) 주장 아닌 <b>정합성(Consistency) 실증</b>임을 명시.
+    </div>
+  </div>
+</div>
+
+<!-- PART V 법리 충돌 -->
+<div class="sect">
+  <div class="sect-head" style="background:var(--bg3)">PART V &nbsp;—&nbsp; 법리 충돌 (Legal Tension)</div>
+  <div class="sect-body">
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px">
+      <div style="background:#F0FFF0;border:2px solid var(--gn);border-radius:7px;padding:13px 15px">
+        <div style="font-size:12px;font-weight:700;color:var(--gn);margin-bottom:7px">형식적 과세 분류 (한국 소득세법)</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.9;font-family:var(--mono)">
+          소득세법 §17①5호<br>
+          "투자신탁의 이익" → 배당소득<br>
+          <span style="font-family:var(--font);color:var(--di)">ROC 여부 불문 전액 배당소득 과세</span>
+        </div>
+      </div>
+      <div style="background:#FFF8F0;border:2px solid var(--or);border-radius:7px;padding:13px 15px">
+        <div style="font-size:12px;font-weight:700;color:var(--or);margin-bottom:7px">경제적 실질 (시장·회계·미국세법)</div>
+        <div style="font-size:12px;color:var(--mu);line-height:1.9;font-family:var(--mono)">
+          IRC §316(a): E&amp;P 초과 → ROC<br>
+          NAV 조정: 분배만큼 차감<br>
+          <span style="font-family:var(--font);color:var(--di)">순경제가치 증가 없음 → 소득요건 미충족 가능성</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:13px 15px;margin-bottom:12px;font-size:12px;line-height:1.9;color:var(--mu)">
+      <b style="color:var(--tx)">조세법 일반원칙과의 충돌 구조:</b><br>
+      조세법학의 일반원칙에 따르면 <b style="color:var(--tx)">소득(Income) = 순자산 증가 (Haig-Simons 정의)</b>이다. ROC 분배의 경우 현금을 수취하나, 동시에 NAV가 동등하게 감소하므로 <b style="color:var(--tx)">투자자의 순자산 순증가는 이론적으로 발생하지 않는다.</b> 즉 현금 수령은 자산의 형태 전환(Asset Conversion from ETF shares to cash)에 해당할 수 있으며, 이는 실현 과세 원칙 하에서도 과세소득 발생 여부 검토가 필요한 구조다.
+    </div>
+
+    <div style="background:var(--bg2);border:1px solid var(--bd);border-radius:7px;padding:13px 15px;font-size:12px;line-height:1.9;color:var(--mu)">
+      <b style="color:var(--tx)">경제실질과 과세형식 간 괴리 가능성:</b><br>
+      시장가격 및 NAV 조정 메커니즘은 ROC의 원본환급 성격과 정합적이다. 한국 소득세법 §17①5호 적용 시, 형식적으로는 "투자신탁 이익"으로 분류되나, 1,719건의 역사적 시장 거래 기록은 해당 분배가 이익 창출이 아닌 원본 반환과 정합적임을 실증한다. 이는 <b style="color:var(--tx)">ROC의 경제적 실질이 현행 분류체계에 충분히 반영되는지 검토를 요하는 입법취지와의 괴리 가능성</b>을 제시한다.
+    </div>
+
+  </div>
+</div>
+
+</div>
+<!-- /학술증명 패널 -->
 
 <!-- ══ 원시데이터 ══ -->
 <div id="p-data" class="panel">
