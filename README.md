@@ -37,7 +37,7 @@
 | CONY | 59.0% | **97.0%** |
 | NVDY | 15.2% | 52.6% |
 
-출처: ICI Primary Master V03 (Tidal Financial Group → IRS 제출 원천 데이터)
+출처: ICI Data (Tidal Financial Group → IRS 제출 원천 데이터)
 
 ### 2. 수치 모형 결과 (g=10%, 초기자산 1억원)
 
@@ -85,7 +85,7 @@ Settings → Pages → Deploy from branch → main / (root)
 
 ## 데이터 출처
 
-- [ICI Tax Supplement (YieldMax)](https://www.ici.org) — ICI Primary Master V03
+- [ICI Tax Supplement (YieldMax)](https://www.ici.org) — ICI Data
 - 역사적 NAV 거래 기록 — ICI-2023-2025-YM-NAV (2023~2025 YieldMax ETF 배분락일별 NAV 전수)
 - 미국 IRC §301(c)(2), §316 — [U.S. Code Title 26](https://www.law.cornell.edu/uscode/text/26)
 - 한미조세협약 (1979) — [국가법령정보센터](https://www.law.go.kr)
