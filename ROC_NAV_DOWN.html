@@ -171,7 +171,7 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
 
 <div class="note" style="margin-bottom:14px;background:var(--bg2);border-left:3px solid var(--bl)">
   <b>R1 · 표본 구성 방법론</b><br>
-  ICI 공식 PCMNT(Primary Mutual Fund Master File) 2023~2025년분 YieldMax ETF 전수를 대상으로, 각 배분락일(Ex-Dividend Date) 기준 배당락 前日·翌日 NAV를 연결하였다. 역병합(Reverse Split) 발생 15종(TSLY 포함 2차)에 대해 발효일별 누적 배수(×2~×10)로 주가 역산 조정을 실시하였으며, 방향 판정(NAV_DOWN / PRICE_UP)은 na − nb의 부호로 결정하였다. 총 1,719건 전수 포함, 결측치(chg=None) 제외 처리.
+  ICI Data 2023~2025년분 YieldMax ETF 전수를 대상으로, 각 배분락일(Ex-Dividend Date) 기준 배당락 前日·翌日 NAV를 연결하였다. 역병합(Reverse Split) 발생 15종(TSLY 포함 2차)에 대해 발효일별 누적 배수(×2~×10)로 주가 역산 조정을 실시하였으며, 방향 판정(NAV_DOWN / PRICE_UP)은 na − nb의 부호로 결정하였다. 총 1,719건 전수 포함, 결측치(chg=None) 제외 처리.
 </div><div class="kpi">
   <div class="kcard"><div class="lbl">분석 건수</div><div class="val b">1,719건</div><div class="sub">2023~2025 · 60+ ETF</div></div>
   <div class="kcard"><div class="lbl">NAV 하락 확인</div><div class="val r">1,498건</div><div class="sub">전체의 87.14%</div></div>
@@ -529,6 +529,84 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
   </div>
 </div>
 
+<!-- PART III-B 조사방법 -->
+<div class="sect" style="margin-top:12px">
+  <div class="sect-head" style="background:var(--bg3)">PART III-B &nbsp;—&nbsp; 조사 방법 및 데이터 출처 (Source Authority &amp; Methodology)</div>
+  <div class="sect-body">
+
+    <!-- 1. 데이터 출처 -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:700;color:var(--tx);margin-bottom:6px">1 &nbsp;·&nbsp; 데이터 출처 (Source Authority)</div>
+      <div style="font-size:12px;color:var(--mu);line-height:1.9;background:var(--bg2);border-radius:7px;padding:12px 14px">
+        본 분석은 미국 증권거래위원회(SEC) EDGAR 시스템에 공시된 <b style="color:var(--tx)">Form 497 (Rule 497(e)) 원문 자료</b>를 직접 수집·검증하여 수행하였다. 각 ETF의 역병합(reverse split) 시행 여부, 효력발생일(Effective Date), 분할비율(Split Ratio), CUSIP 변경사항은 모두 SEC 공시 원문 기준으로 확인하였다. 배분락일별 역사적 NAV 및 분배금 내역은 <b style="color:var(--tx)">ICI Data</b> 2023~2025년분을 기준으로 하며, 이는 Tidal Financial Group이 IRS에 제출하는 원천 데이터와 동일한 공신력을 가진다.
+      </div>
+    </div>
+
+    <!-- 2. 날짜 해석 기준 -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:700;color:var(--tx);margin-bottom:6px">2 &nbsp;·&nbsp; 날짜 해석 기준 (Date Interpretation Standard)</div>
+      <div style="font-size:12px;color:var(--mu);line-height:1.9;background:var(--bg2);border-radius:7px;padding:12px 14px;margin-bottom:8px">
+        SEC 공시상의 "Effective Date"는 해당 영업일 <b style="color:var(--tx)">장 마감(after close) 기준 효력발생일</b>을 의미한다. 따라서 실제 시장에서 분할조정 가격이 최초 반영되는 거래일은 통상 <b style="color:var(--tx)">다음 영업일(next trading day)</b>로 해석한다. 본 이벤트 스터디에서 배당락일 기준 NAV 전후 비교는 이 해석을 전제로 수행되었다.
+      </div>
+      <div class="tbl-wrap">
+      <table style="min-width:500px;font-size:12px">
+        <thead><tr>
+          <th style="text-align:left">SEC Effective Date</th>
+          <th style="text-align:left">실제 반영 거래일</th>
+          <th style="text-align:left">대상 ETF</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="cmu">2024-02-23 (금)</td><td class="cg">2024-02-26 (월)</td><td style="text-align:left;color:var(--mu)">TSLY ×2</td></tr>
+          <tr><td class="cmu">2025-11-28 (금)</td><td class="cg">2025-12-01 (월)</td><td style="text-align:left;color:var(--mu)">MRNY ×10, TSLY ×5, ULTY ×10, YBIT ×5</td></tr>
+          <tr><td class="cmu">2025-12-01 (월)</td><td class="cg">2025-12-02 (화)</td><td style="text-align:left;color:var(--mu)">ABNY ×5, AIYY ×10, CONY ×10, CRSH ×10, DIPS ×10, FIAT ×10, OARK ×5</td></tr>
+          <tr><td class="cmu">2025-12-05 (금)</td><td class="cg">2025-12-08 (월)</td><td style="text-align:left;color:var(--mu)">AMDY ×5, MSTY ×5, PYPY ×5</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- 3. TSLY 누적 역병합 -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:700;color:var(--tx);margin-bottom:6px">3 &nbsp;·&nbsp; TSLY 누적 역병합 처리 기준</div>
+      <div style="font-size:12px;color:var(--mu);line-height:1.9;background:var(--bg2);border-radius:7px;padding:12px 14px;margin-bottom:8px">
+        TSLY는 <b style="color:var(--tx)">2024년 1-for-2</b>, <b style="color:var(--tx)">2025년 1-for-5</b>의 다중 역병합 이력이 존재하며, 누적 기준 <b style="color:var(--rd)">1-for-10 equivalent adjustment</b>가 적용된다. 역병합 과정에서 CUSIP이 두 차례 변경되었으므로, 시계열 NAV 비교 시 연속성 보정이 필수적이다.
+      </div>
+      <div class="tbl-wrap">
+      <table style="min-width:380px;font-size:12px">
+        <thead><tr>
+          <th style="text-align:left">시점</th><th style="text-align:left">CUSIP</th><th style="text-align:left">비고</th>
+        </tr></thead>
+        <tbody>
+          <tr><td class="cmu">초기 상장</td><td style="text-align:left;font-family:var(--mono)">88634T709</td><td style="text-align:left;color:var(--mu)">원 CUSIP</td></tr>
+          <tr><td class="cmu">2024-02-26 이후</td><td style="text-align:left;font-family:var(--mono)">88636J444</td><td style="text-align:left;color:var(--mu)">1차 역병합 후 변경 (×2 조정)</td></tr>
+          <tr><td class="cmu">2025-12-01 이후</td><td style="text-align:left;font-family:var(--mono)">88636X880</td><td style="text-align:left;color:var(--mu)">2차 역병합 후 변경 (×10 누적)</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <!-- 4. 가격 보정 및 근사 방법 -->
+    <div style="margin-bottom:14px">
+      <div style="font-size:12px;font-weight:700;color:var(--tx);margin-bottom:6px">4 &nbsp;·&nbsp; 가격 보정 및 NAV 변화 근사 방법</div>
+      <div style="font-size:12px;color:var(--mu);line-height:1.9;background:var(--bg2);border-radius:7px;padding:12px 14px">
+        ICI Data 수정주가(adjusted price)를 기준으로, SEC 공시 기반 역병합 비율을 반영하여 <b style="color:var(--tx)">시계열 연속성 보정(adjustment normalization)</b>을 수행하였다. 각 ETF별 누적 배수(×2~×10)를 산정하고, 배당락 前日 NAV(NAV<sub>before</sub>)와 翌日 NAV(NAV<sub>after</sub>)를 동일 기준으로 환산하였다. 배당락에 따른 NAV 변화는 다음과 같이 근사하였다.<br><br>
+        <span style="font-family:var(--mono);font-size:13px;color:var(--tx)">&Delta;NAV &asymp; Close<sub>t</sub> &minus; Close<sub>t&minus;1</sub></span><br>
+        <span style="font-size:11px;color:var(--di)">Close<sub>t</sub>: 배당락 당일 종가 &nbsp;|&nbsp; Close<sub>t&minus;1</sub>: 직전 영업일 종가</span>
+      </div>
+    </div>
+
+    <!-- 5. 재현가능성 선언 -->
+    <div style="background:#FFF8F0;border:2px solid var(--or);border-radius:7px;padding:13px 15px">
+      <div style="font-size:12px;font-weight:700;color:var(--or);margin-bottom:7px">5 &nbsp;·&nbsp; 근사 모델 한계 선언 (Approximation Disclosure)</div>
+      <div style="font-size:12px;color:var(--mu);line-height:1.9">
+        본 분석은 분배 직후 시장가격 조정 방향성을 관측하기 위한 <b style="color:var(--tx)">실증적 근사 모델(empirical approximation model)</b>이며, ETF 내부 자산평가 시점 차이 및 장중 변동성에 따른 미세 오차 가능성은 존재한다. 역병합 전 원시가(raw price) 역산은 ICI Data 조정가 ÷ 누적배수 방식으로 수행하였으며, 팩터 검증 <b style="color:var(--tx)">19/19 PASS</b>로 재현성을 확인하였다(TSLY 2구간 포함).<br><br>
+        그럼에도 불구하고, <b style="color:var(--tx)">대규모 표본(N=1,719)에서 반복적으로 동일 방향성이 관측</b>될 경우, 이는 통계적으로 유의미한 구조적 패턴으로 해석될 수 있다. 개별 관측의 오차는 대수의 법칙(Law of Large Numbers)에 의해 집합적 수준에서 상쇄되며, H₀ 기각은 세 가지 독립 방법(χ², 점이열 상관, 오즈비)으로 교차 확인되었다.
+      </div>
+    </div>
+
+  </div>
+</div>
+
 <!-- PART IV 반례·한계 -->
 <div class="sect">
   <div class="sect-head" style="background:var(--bg3)">PART IV &nbsp;—&nbsp; 반례 및 한계 (Counterarguments &amp; Limitations)</div>
@@ -700,7 +778,7 @@ footer{border-top:2px solid var(--bd);padding:14px 0;margin-top:20px;font-size:1
 </main>
 
 <footer><div class="w"><div class="fdiv">
-  <span>데이터: ICI-2023-2025-YM-NAV.xlsx (사용자 제공) | ICI 2023~2025 PCMNT | 1,719건 역사적 거래 기록</span>
+  <span>데이터: ICI-2023-2025-YM-NAV.xlsx (사용자 제공) | ICI Data | 1,719건 역사적 거래 기록</span>
   <span style="font-family:var(--mono)">IRC §301(c)(2)·§316 | 소득세법 §17①5호 | NAV_DOWN 87.14%</span>
 </div></div></footer>
 
